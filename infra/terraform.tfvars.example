@@ -1,0 +1,5 @@
+# cp terraform.tfvars.example terraform.tfvars  (git-ignored)
+ssh_public_key = "ssh-ed25519 AAAA... deploy@foodmap"
+# api_domain     = "api.crizah.space"
+# frontend_urls  = "https://crizah.space"
+# region         = "ap-south-1"

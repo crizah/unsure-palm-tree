@@ -18,7 +18,7 @@
 | 5. Address search + geocode endpoint | ⏳ Not started |
 | 6. Hardening, tests, mobile polish | 🟡 Partly (headers, rate limit, gzip done; tests not) |
 | 6b. Split into `api/` + `web/` with separate envs | ✅ Done |
-| 7. Deployment (VPS, Caddy, systemd) + README | ⏳ Not started |
+| 7. Deployment: Terraform (t3.micro), Caddy, systemd, GitHub Actions | 🟡 Written and validated, not yet applied (see `infra/README.md`) |
 
 ---
 

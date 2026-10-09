@@ -1,0 +1,99 @@
+#!/bin/bash
+# First-boot setup for the foodmap API server (Ubuntu 24.04).
+# Runs once as root via cloud-init. Output: /var/log/cloud-init-output.log
+set -euo pipefail
+export DEBIAN_FRONTEND=noninteractive
+
+apt-get update
+apt-get install -y curl unattended-upgrades
+
+# ---- Caddy (Ubuntu archive: security-patched, no third-party repo) ----
+apt-get install -y caddy
+
+# ---- users ----
+# foodmap: runs the server, no login. deploy: CI uploads the binary + db as this user.
+useradd --system --home-dir /opt/foodmap --shell /usr/sbin/nologin foodmap
+useradd --create-home --shell /bin/bash deploy
+install -d -m 700 -o deploy -g deploy /home/deploy/.ssh
+echo '${ssh_public_key}' > /home/deploy/.ssh/authorized_keys
+chown deploy:deploy /home/deploy/.ssh/authorized_keys
+chmod 600 /home/deploy/.ssh/authorized_keys
+
+# deploy may restart the service and nothing else as root
+cat > /etc/sudoers.d/deploy <<'SUDO'
+deploy ALL=(root) NOPASSWD: /usr/bin/systemctl restart foodmap, /usr/bin/systemctl is-active foodmap
+SUDO
+chmod 440 /etc/sudoers.d/deploy
+visudo -cf /etc/sudoers.d/deploy
+
+# ssh: keys only, no root
+cat > /etc/ssh/sshd_config.d/99-hardening.conf <<'SSHD'
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PermitRootLogin no
+SSHD
+systemctl reload ssh
+
+# ---- app directories ----
+# setgid on bin/ and data/ so uploaded files inherit group foodmap (readable by the service)
+install -d -m 750 -o deploy -g foodmap /opt/foodmap
+install -d -m 2750 -o deploy -g foodmap /opt/foodmap/bin
+install -d -m 2750 -o deploy -g foodmap /opt/foodmap/data
+
+cat > /opt/foodmap/.env <<'ENV'
+PORT=8080
+FRONTEND_URL=${frontend_urls}
+ENV
+chown root:foodmap /opt/foodmap/.env
+chmod 640 /opt/foodmap/.env
+
+# ---- systemd ----
+cat > /etc/systemd/system/foodmap.service <<'UNIT'
+[Unit]
+Description=Food map API
+After=network.target
+
+[Service]
+User=foodmap
+Group=foodmap
+WorkingDirectory=/opt/foodmap
+ExecStart=/opt/foodmap/bin/server -env /opt/foodmap/.env -db /opt/foodmap/data/places.db -trust-proxy
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryMax=400M
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+systemctl daemon-reload
+# Not started yet: the binary and db arrive with the first deploy.
+systemctl enable foodmap
+
+# ---- Caddy: HTTPS reverse proxy ----
+# Access logs are discarded on purpose: request URLs contain users' coordinates.
+cat > /etc/caddy/Caddyfile <<'CADDY'
+${api_domain} {
+	reverse_proxy 127.0.0.1:8080
+	log {
+		output discard
+	}
+}
+CADDY
+systemctl enable caddy
+systemctl restart caddy
+
+# automatic security updates
+systemctl enable --now unattended-upgrades

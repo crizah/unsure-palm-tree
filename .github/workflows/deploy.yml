@@ -1,0 +1,91 @@
+name: Deploy API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "api/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+# One deploy at a time; never cancel one halfway through an upload.
+concurrency:
+  group: deploy-api
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: api/go.mod
+          cache-dependency-path: api/go.sum
+      - run: go vet ./...
+      - run: go test ./...
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: api/go.mod
+          cache-dependency-path: api/go.sum
+
+      - name: Build (static linux/amd64 binary)
+        env:
+          CGO_ENABLED: "0"
+          GOOS: linux
+          GOARCH: amd64
+        run: go build -trimpath -ldflags="-s -w" -o server ./cmd/server
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Upload binary and database
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          SSH_OPTS="-i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes"
+          scp $SSH_OPTS server "deploy@$HOST:/opt/foodmap/bin/server.new"
+          scp $SSH_OPTS data/places.db "deploy@$HOST:/opt/foodmap/data/places.db.new"
+
+      - name: Swap in and restart
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          SSH_OPTS="-i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes"
+          ssh $SSH_OPTS "deploy@$HOST" bash -s <<'REMOTE'
+          set -euo pipefail
+          chmod 750 /opt/foodmap/bin/server.new
+          chmod 640 /opt/foodmap/data/places.db.new
+          mv -f /opt/foodmap/bin/server.new /opt/foodmap/bin/server
+          mv -f /opt/foodmap/data/places.db.new /opt/foodmap/data/places.db
+          sudo systemctl restart foodmap
+          for i in $(seq 1 10); do
+            if curl -fsS http://127.0.0.1:8080/healthz >/dev/null; then echo "healthy"; exit 0; fi
+            sleep 1
+          done
+          echo "service did not become healthy" >&2
+          exit 1
+          REMOTE
