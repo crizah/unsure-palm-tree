@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="{{CSP}}" />
+  <meta name="api-base" content="{{API_URL}}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Find Free &amp; Subsidized Food — Delhi &amp; Bangalore</title>
   <meta name="description" content="Find government canteens, NGO kitchens and free food distribution points near you in Delhi and Bangalore." />
-  <link rel="stylesheet" href="/static/vendor/leaflet.css" />
-  <link rel="stylesheet" href="/static/css/app.css" />
+  <link rel="stylesheet" href="/vendor/leaflet.css" />
+  <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body class="locate">
   <div class="app">
@@ -27,7 +29,7 @@
     </aside>
     <div id="map" aria-label="Map"></div>
   </div>
-  <script src="/static/vendor/leaflet.js"></script>
-  <script src="/static/js/locate.js"></script>
+  <script src="/vendor/leaflet.js"></script>
+  <script src="/js/locate.js"></script>
 </body>
 </html>

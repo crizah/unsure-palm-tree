@@ -9,23 +9,40 @@ import (
 	"time"
 )
 
-// SecurityHeaders sets a strict CSP and related headers. Tiles are the only
-// third-party origin; everything else is served from this binary.
-func SecurityHeaders(tileOrigins string, next http.Handler) http.Handler {
-	csp := "default-src 'none'; " +
-		"script-src 'self'; " +
-		"style-src 'self' 'unsafe-inline'; " + // Leaflet sets inline positioning styles
-		"img-src 'self' data: " + tileOrigins + "; " +
-		"connect-src 'self'; " +
-		"base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+// SecurityHeaders sets defensive headers for a JSON-only API: nothing it
+// returns should ever be rendered, framed or sniffed.
+func SecurityHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		h := w.Header()
-		h.Set("Content-Security-Policy", csp)
+		h.Set("Content-Security-Policy", "default-src 'none'; frame-ancestors 'none'")
 		h.Set("X-Content-Type-Options", "nosniff")
 		h.Set("Referrer-Policy", "no-referrer")
-		h.Set("Permissions-Policy", "geolocation=(self), camera=(), microphone=()")
-		h.Set("Cross-Origin-Opener-Policy", "same-origin")
 		h.Set("Strict-Transport-Security", "max-age=31536000")
+		next.ServeHTTP(w, r)
+	})
+}
+
+// CORS allows only the listed browser origins to call the API. With none
+// configured nothing is added, so browsers on other origins can't read
+// responses. The API is GET-only, so preflights are answered and nothing
+// else is allowed.
+func CORS(allowedOrigins []string, next http.Handler) http.Handler {
+	allowed := map[string]bool{}
+	for _, o := range allowedOrigins {
+		allowed[o] = true
+	}
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Vary", "Origin")
+		if o := r.Header.Get("Origin"); allowed[o] {
+			h := w.Header()
+			h.Set("Access-Control-Allow-Origin", o)
+			h.Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+			h.Set("Access-Control-Max-Age", "600")
+		}
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
 		next.ServeHTTP(w, r)
 	})
 }

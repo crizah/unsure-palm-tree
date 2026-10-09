@@ -8,6 +8,8 @@
   const TYPES = ['Government', 'NGO', 'Religious'];
   const DEFAULT_VIEW = { center: [20.59, 78.96], zoom: 5 };
   const RADIUS_KM = 5;
+  // API origin is injected at build time from API_URL (see web/build.mjs).
+  const API_BASE = document.querySelector('meta[name="api-base"]')?.content || '';
 
   const state = { city: '', types: new Set(), q: '', me: null, places: [], selected: null };
   const markers = new Map(); // place id -> L.Marker
@@ -45,7 +47,7 @@
     p.set('limit', '100');
     setStatus('Loading…');
     try {
-      const res = await fetch('/api/places?' + p);
+      const res = await fetch(API_BASE + '/api/places?' + p);
       if (!res.ok) throw new Error(res.status === 429 ? 'Too many requests — try again in a moment.' : 'Could not load places.');
       const data = await res.json();
       if (seq !== reqSeq) return; // a newer request superseded this one
@@ -58,7 +60,7 @@
 
   async function loadCities() {
     try {
-      const res = await fetch('/api/cities');
+      const res = await fetch(API_BASE + '/api/cities');
       const { cities } = await res.json();
       const wrap = $('city-chips');
       wrap.replaceChildren(chip('All cities', '', true, () => setCity('')));
@@ -89,8 +91,30 @@
     statusEl.classList.toggle('error', !!isError);
   }
 
-  function pinIcon(type, selected) {
-    return L.divIcon({ className: '', html: `<div class="pin ${type}${selected ? ' sel' : ''}"></div>`, iconSize: [18, 18], iconAnchor: [9, 9] });
+  // Short price for the pin: "Free", or the lowest rupee amount in the cost text
+  // ("₹5–₹15" -> "₹5"). The full cost is in the list and popup.
+  function pinLabel(cost) {
+    if (/^\s*free/i.test(cost)) return 'Free';
+    const m = cost.match(/₹\s*(\d{1,4})/);
+    return m ? '₹' + m[1] : '₹';
+  }
+
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  function svg(tag, attrs, text) {
+    const n = document.createElementNS(SVG_NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  // Classic map pin (teardrop) with the price inside its head. Tip is the anchor.
+  const PIN_W = 32, PIN_H = 42;
+  function pinIcon(p, selected) {
+    const root = svg('svg', { class: 'pin ' + p.type + (selected ? ' sel' : ''), width: PIN_W, height: PIN_H, viewBox: '0 0 40 52', 'aria-hidden': 'true' });
+    root.append(
+      svg('path', { class: 'pin-body', d: 'M20 50C20 50 3 31 3 19.5a17 17 0 0 1 34 0C37 31 20 50 20 50Z' }),
+      svg('text', { class: 'pin-label', x: 20, y: 24, 'text-anchor': 'middle' }, pinLabel(p.cost)));
+    return L.divIcon({ className: 'pin-wrap', html: root, iconSize: [PIN_W, PIN_H], iconAnchor: [PIN_W / 2, PIN_H - 2], popupAnchor: [0, -PIN_H + 6] });
   }
 
   function render(fit) {
@@ -100,7 +124,7 @@
       const li = card(p);
       cards.set(p.id, li); listEl.append(li);
       if (p.lat != null) {
-        const m = L.marker([p.lat, p.lng], { icon: pinIcon(p.type, false), title: p.name, keyboard: true });
+        const m = L.marker([p.lat, p.lng], { icon: pinIcon(p, false), title: p.name, keyboard: true });
         m.on('click', () => select(p.id, { fromMap: true }));
         m.addTo(pinLayer); markers.set(p.id, m); mapped.push(p);
       }
@@ -154,16 +178,16 @@
     if (prev != null) {
       cards.get(prev)?.classList.remove('selected');
       const pm = markers.get(prev), pp = state.places.find((x) => x.id === prev);
-      if (pm && pp) pm.setIcon(pinIcon(pp.type, false));
+      if (pm && pp) { pm.setIcon(pinIcon(pp, false)); pm.setZIndexOffset(0); }
     }
     state.selected = id;
     const li = cards.get(id), p = state.places.find((x) => x.id === id);
     li?.classList.add('selected');
     const m = markers.get(id);
     if (m && p) {
-      m.setIcon(pinIcon(p.type, true));
+      m.setIcon(pinIcon(p, true)); m.setZIndexOffset(1000);
       if (!fromMap) map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 16), { duration: 0.6 });
-      m.bindPopup(popupNode(p), { closeButton: false, offset: [0, -6] }).openPopup();
+      m.bindPopup(popupNode(p), { closeButton: false }).openPopup();
     }
     if (fromMap) li?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     if (isMobile() && !fromMap) setSheet('peek'); // reveal the map on mobile

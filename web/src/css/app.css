@@ -8,7 +8,7 @@
   --accent-light: #f0f0f0;
   --govt: #000000;
   --ngo: #ffffff;
-  --religious: #8a8a8a;
+  --religious: #6b6b6b;
   --radius: 0;
   --tap: 44px;
 }
@@ -80,11 +80,18 @@ body.locate { overflow: hidden; }
 .foot { padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); }
 
 /* ---- map markers ---- */
-.pin { width: 18px; height: 18px; border: 2px solid #000; box-shadow: 0 0 0 2px #fff; }
-.pin.Government { background: var(--govt); }
-.pin.NGO { background: var(--ngo); }
-.pin.Religious { background: var(--religious); }
-.pin.sel { width: 26px; height: 26px; margin: -4px 0 0 -4px; box-shadow: 0 0 0 3px #fff, 0 0 0 5px #000; }
+.pin-wrap { background: none; border: 0; }
+.pin { display: block; overflow: visible; transform-origin: 50% 96%; transition: transform 0.12s; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35)); }
+.pin-body { stroke: #000; stroke-width: 2; stroke-linejoin: round; }
+.pin-label { font: 700 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; letter-spacing: -0.2px; }
+.pin.Government .pin-body { fill: var(--govt); }
+.pin.Government .pin-label { fill: #fff; }
+.pin.NGO .pin-body { fill: var(--ngo); }
+.pin.NGO .pin-label { fill: #000; }
+.pin.Religious .pin-body { fill: var(--religious); }
+.pin.Religious .pin-label { fill: #fff; }
+.pin.sel { transform: scale(1.25); }
+.leaflet-marker-icon:focus-visible .pin-body { stroke-width: 3; }
 .me { width: 16px; height: 16px; border-radius: 50%; background: #000; border: 3px solid #fff; box-shadow: 0 0 0 1px #000; }
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { border-radius: 0; box-shadow: none; border: 1px solid #000; }
 .leaflet-popup-content { margin: 10px 12px; font-size: 0.82rem; line-height: 1.4; }
