@@ -7,39 +7,39 @@
   <meta name="description" content="Find government canteens, NGO kitchens, and free food distribution points in Delhi and Bangalore. Atal Canteens, Indira Canteens, Gurudwara Langars, and more." />
   <style>
     :root {
-      --bg: #f4f7ff;
+      --bg: #ffffff;
       --surface: #ffffff;
-      --border: #e5e7eb;
-      --text: #374151;
-      --muted: #9ca3af;
-      --accent: #4f8ef7;
-      --accent-light: #e8f0fe;
-      --govt: #16a34a;
-      --govt-bg: #f0fdf4;
-      --ngo: #d97706;
-      --ngo-bg: #fffbeb;
-      --religious: #8b5cf6;
-      --religious-bg: #f5f3ff;
-      --radius: 8px;
-      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --border: #000000;
+      --text: #000000;
+      --muted: #555555;
+      --accent: #000000;
+      --accent-light: #f0f0f0;
+      --govt: #000000;
+      --govt-bg: #f0f0f0;
+      --ngo: #000000;
+      --ngo-bg: #e8e8e8;
+      --religious: #000000;
+      --religious-bg: #f8f8f8;
+      --radius: 0;
+      --shadow: none;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --bg: #1e2a3a;
-        --surface: #243447;
-        --border: #4b5e72;
-        --text: #f1f5f9;
-        --muted: #a8b8c8;
-        --accent-light: #2a4a7a;
-        --govt-bg: #16a34a18;
-        --ngo-bg: #d9770618;
-        --religious-bg: #8b5cf618;
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --border: #000000;
+        --text: #000000;
+        --muted: #555555;
+        --accent-light: #f0f0f0;
+        --govt-bg: #f0f0f0;
+        --ngo-bg: #e8e8e8;
+        --religious-bg: #f8f8f8;
       }
     }
     :root[data-theme="dark"] {
-      --bg: #1e2a3a; --surface: #243447; --border: #4b5e72;
-      --text: #f1f5f9; --muted: #a8b8c8; --accent-light: #2a4a7a;
-      --govt-bg: #16a34a18; --ngo-bg: #d9770618; --religious-bg: #8b5cf618;
+      --bg: #ffffff; --surface: #ffffff; --border: #000000;
+      --text: #000000; --muted: #555555; --accent-light: #f0f0f0;
+      --govt-bg: #f0f0f0; --ngo-bg: #e8e8e8; --religious-bg: #f8f8f8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
@@ -54,30 +54,30 @@
     .filter-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
     .filter-group + .filter-group { padding-left: 12px; border-left: 1px solid var(--border); }
     button {
-      padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border);
+      padding: 5px 12px; border-radius: 0; border: 1px solid var(--border);
       background: var(--bg); color: var(--muted); font-size: 0.8rem; cursor: pointer; transition: all 0.15s;
     }
-    button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    button.active { background: var(--accent); color: #ffffff; border-color: #000000; }
     .search-wrap { margin-left: auto; }
     #search {
-      padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border);
+      padding: 5px 10px; border-radius: 0; border: 1px solid var(--border);
       background: var(--bg); color: var(--text); font-size: 0.8rem; width: 180px;
     }
     main { padding: 16px; max-width: 1100px; margin: 0 auto; }
     .stats { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 0; padding: 14px;  }
     .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
     .card h2 { font-size: 0.9rem; font-weight: 600; line-height: 1.3; }
-    .badge { font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+    .badge { font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 0; white-space: nowrap; flex-shrink: 0; }
     .badge.Government { background: var(--govt-bg); color: var(--govt); }
     .badge.NGO { background: var(--ngo-bg); color: var(--ngo); }
     .badge.Religious { background: var(--religious-bg); color: var(--religious); }
     .meta { font-size: 0.78rem; color: var(--muted); display: flex; flex-direction: column; gap: 3px; }
-    .meta .addr::before { content: "📍 "; }
-    .meta .time::before { content: "🕐 "; }
-    .meta .cost::before { content: "💰 "; }
-    .city-tag { display: inline-block; margin-top: 4px; font-size: 0.7rem; background: var(--accent-light); color: var(--accent); padding: 1px 7px; border-radius: 10px; }
+    .meta .addr::before { content: "Loc: "; }
+    .meta .time::before { content: "Time: "; }
+    .meta .cost::before { content: "Cost: "; }
+    .city-tag { display: inline-block; margin-top: 4px; font-size: 0.7rem; background: var(--accent-light); color: var(--accent); padding: 1px 7px; border-radius: 0; }
     footer { text-align: center; padding: 24px 16px; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 24px; }
     footer a { color: var(--accent); }
     @media (max-width: 480px) {
