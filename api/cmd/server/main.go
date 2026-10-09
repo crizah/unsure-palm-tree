@@ -14,7 +14,7 @@ import (
 	"foodmap/internal/config"
 	"foodmap/internal/store"
 )
-// redeploy
+// redeploy again
 func main() {
 	envPath := flag.String("env", ".env", "path to .env file (optional; real env vars take precedence)")
 	dbPath := flag.String("db", "data/places.db", "path to read-only sqlite db")
