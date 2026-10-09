@@ -1,7 +1,271 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free & Subsidized Food Places — Delhi & Bangalore</title>
+  <meta name="description" content="Find government canteens, NGO kitchens, and free food distribution points in Delhi and Bangalore. Atal Canteens, Indira Canteens, Gurudwara Langars, and more." />
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --surface: #ffffff;
+      --border: #e5e7eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #1d4ed8;
+      --accent-light: #eff6ff;
+      --govt: #15803d;
+      --govt-bg: #f0fdf4;
+      --ngo: #b45309;
+      --ngo-bg: #fffbeb;
+      --religious: #7c3aed;
+      --religious-bg: #f5f3ff;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --border: #334155;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --accent-light: #1e3a5f;
+        --govt-bg: #14532d22;
+        --ngo-bg: #78350f22;
+        --religious-bg: #4c1d9522;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f172a; --surface: #1e293b; --border: #334155;
+      --text: #f1f5f9; --muted: #94a3b8; --accent-light: #1e3a5f;
+      --govt-bg: #14532d22; --ngo-bg: #78350f22; --religious-bg: #4c1d9522;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 16px 16px; }
+    header h1 { font-size: 1.25rem; font-weight: 700; }
+    header p { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    .controls {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 8px;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .filter-group + .filter-group { padding-left: 12px; border-left: 1px solid var(--border); }
+    button {
+      padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--muted); font-size: 0.8rem; cursor: pointer; transition: all 0.15s;
+    }
+    button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .search-wrap { margin-left: auto; }
+    #search {
+      padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); font-size: 0.8rem; width: 180px;
+    }
+    main { padding: 16px; max-width: 1100px; margin: 0 auto; }
+    .stats { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+    .card h2 { font-size: 0.9rem; font-weight: 600; line-height: 1.3; }
+    .badge { font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+    .badge.Government { background: var(--govt-bg); color: var(--govt); }
+    .badge.NGO { background: var(--ngo-bg); color: var(--ngo); }
+    .badge.Religious { background: var(--religious-bg); color: var(--religious); }
+    .meta { font-size: 0.78rem; color: var(--muted); display: flex; flex-direction: column; gap: 3px; }
+    .meta .addr::before { content: "📍 "; }
+    .meta .time::before { content: "🕐 "; }
+    .meta .cost::before { content: "💰 "; }
+    .city-tag { display: inline-block; margin-top: 4px; font-size: 0.7rem; background: var(--accent-light); color: var(--accent); padding: 1px 7px; border-radius: 10px; }
+    footer { text-align: center; padding: 24px 16px; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 24px; }
+    footer a { color: var(--accent); }
+    @media (max-width: 480px) {
+      .filter-group + .filter-group { padding-left: 0; border-left: none; }
+      #search { width: 100%; }
+      .search-wrap { width: 100%; margin-left: 0; }
+    }
+  </style>
+</head>
 <body>
-<h1>Hi</h1>
-<img src="alpha.jpg">
+
+<header>
+  <h1>Free &amp; Subsidized Food in Delhi &amp; Bangalore</h1>
+  <p>Government canteens, NGO kitchens, and free langar — verified public list</p>
+</header>
+
+<div class="controls">
+  <div class="filter-group" id="city-filters">
+    <button class="active" data-city="all">All Cities</button>
+    <button data-city="Delhi">Delhi</button>
+    <button data-city="Bangalore">Bangalore</button>
+  </div>
+  <div class="filter-group" id="type-filters">
+    <button class="active" data-type="all">All Types</button>
+    <button data-type="Government">Government</button>
+    <button data-type="NGO">NGO</button>
+    <button data-type="Religious">Religious</button>
+  </div>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search area or name…" />
+  </div>
+</div>
+
+<main>
+  <div class="stats" id="stats"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  Data compiled from Delhi Government (Atal Canteen scheme), BBMP (Indira Canteen), and public NGO listings.
+  Verify timings before visiting. &mdash; <a href="mailto:ansari@pharmaflow.org">Suggest a location</a>
+</footer>
+
+<script>
+const places = [
+  // ── DELHI: Atal Canteens (Government) ──────────────────────────────────────
+  { name:"Atal Canteen – Holambi Kalan",         city:"Delhi", type:"Government", area:"Holambi Kalan",       address:"CS Plot, B-Block, Holambi Kalan",                                          timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Anna Nagar",             city:"Delhi", type:"Government", area:"Anna Nagar",          address:"JJ Cluster, Anna Nagar",                                                   timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Dwarka Sector 3",        city:"Delhi", type:"Government", area:"Dwarka",              address:"Vacant land, Sector-3, Phase-I, Dwarka",                                  timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Paschim Puri",           city:"Delhi", type:"Government", area:"Paschim Puri",        address:"Shaheed Bhagat Singh Camp, Paschim Puri",                                 timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Shalimar Bagh",          city:"Delhi", type:"Government", area:"Shalimar Bagh",       address:"Near Mohalla Clinic, AB Block, Kela Godown Road, Shalimar Bagh",          timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Kalkaji",                city:"Delhi", type:"Government", area:"Kalkaji",             address:"DDA Flats, Kalkaji",                                                       timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Sunlight Colony",        city:"Delhi", type:"Government", area:"Seemapuri",           address:"Opposite Community Hall, Sunlight Colony, Old Seemapuri",                  timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Vasant Vihar",           city:"Delhi", type:"Government", area:"Vasant Vihar",        address:"Bhanwar Singh Camp, Vasant Vihar",                                         timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Kirti Nagar",            city:"Delhi", type:"Government", area:"Kirti Nagar",         address:"Shishu Vatika, Chunna Bhatti, Kirti Nagar",                               timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Jahangirpuri",           city:"Delhi", type:"Government", area:"Jahangirpuri",        address:"G-Block Cluster, Jahangirpuri, Azadpur",                                  timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Khyala",                 city:"Delhi", type:"Government", area:"Khyala",              address:"Vacant parking, F Extension, near GGS Hospital, Khyala",                  timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Nehru Nagar",            city:"Delhi", type:"Government", area:"Nehru Nagar",         address:"Pratap Camp, Nehru Nagar",                                                timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Goyla Dairy",            city:"Delhi", type:"Government", area:"Goyla Dairy",         address:"Vacant land, Goyla Dairy",                                                timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Raghubir Nagar",         city:"Delhi", type:"Government", area:"Raghubir Nagar",      address:"R Block JJ Cluster, Raghubir Nagar",                                      timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Malviya Nagar",          city:"Delhi", type:"Government", area:"Malviya Nagar",       address:"Indira Camp, Malviya Nagar",                                               timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Bawana",                 city:"Delhi", type:"Government", area:"Bawana",              address:"CS Land, A-Block, SRS Bawana",                                            timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Sheikh Sarai",           city:"Delhi", type:"Government", area:"Sheikh Sarai",        address:"Sheikh Sarai, Apeejay School Road",                                       timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Timarpur (Sanjay Basti)",city:"Delhi", type:"Government", area:"Timarpur",            address:"JJ Cluster, Sanjay Basti, Timarpur",                                      timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Dwarka Sector 1",        city:"Delhi", type:"Government", area:"Dwarka",              address:"Near Veterinary Hospital, Sector-1, Dwarka",                              timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Chhatarpur",             city:"Delhi", type:"Government", area:"Chhatarpur",          address:"Shanti Camp, Chhatarpur",                                                  timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Malk Ganj",              city:"Delhi", type:"Government", area:"Malk Ganj",           address:"3594–3608/XII, opp Shopping Complex, Katra Meena Beg, Malk Ganj, Timarpur",timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Mangolpuri G-Block",     city:"Delhi", type:"Government", area:"Mangolpuri",          address:"Near BVK, G-Block, Mangolpuri",                                           timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Mangolpuri N-Block",     city:"Delhi", type:"Government", area:"Mangolpuri",          address:"N-Block, Mangolpuri",                                                      timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Inderpuri",              city:"Delhi", type:"Government", area:"Inderpuri",           address:"B-Block, Budh Nagar, Inderpuri",                                          timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Sanjay Camp",            city:"Delhi", type:"Government", area:"Sanjay Camp",         address:"Sanjay Camp",                                                              timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Rani Garden",            city:"Delhi", type:"Government", area:"Rani Garden",         address:"JJ Cluster, Rani Garden (near BVK)",                                      timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Wazirpur",               city:"Delhi", type:"Government", area:"Wazirpur",            address:"Near C-35 JJ Cluster, Wazirpur Industrial Area",                          timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Shyam Nagar",            city:"Delhi", type:"Government", area:"Shyam Nagar",         address:"Vacant land, JJ Cluster Shyam Nagar & Shikhri Bhatta",                   timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Jai Vihar",              city:"Delhi", type:"Government", area:"Jai Vihar",           address:"Jai Vihar, Phase-I",                                                       timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Sangam Vihar",           city:"Delhi", type:"Government", area:"Sangam Vihar",        address:"DDA Park, Sangam Vihar (near Police Station)",                            timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Ekta Vihar",             city:"Delhi", type:"Government", area:"Ekta Vihar",          address:"Ekta Vihar, Sector-6",                                                     timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Indira Camp No. 3",      city:"Delhi", type:"Government", area:"JJ Cluster",          address:"Indira Camp No. 3, JJ Cluster",                                           timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Begum Pur",              city:"Delhi", type:"Government", area:"Begum Pur",           address:"Balmiki Camp, Begum Pur",                                                  timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Narela (HUDCO)",         city:"Delhi", type:"Government", area:"Narela",              address:"Pocket-11, Sector A-6, Narela (HUDCO)",                                   timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – M.B. Road",              city:"Delhi", type:"Government", area:"M.B. Road",           address:"Nordan Camp, S.P. Crusher, M.B. Road",                                    timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Shahbad Daulatpur",      city:"Delhi", type:"Government", area:"Shahbad Daulatpur",   address:"C-Block, Shahbad Daulatpur (Dairy Area)",                                 timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Jhilmil Colony",         city:"Delhi", type:"Government", area:"Jhilmil Colony",      address:"Rajeev Camp, Krishna Market, Jhilmil Colony",                             timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Naraina Industrial Area",city:"Delhi", type:"Government", area:"Naraina",             address:"Shivaji Park, Naraina Industrial Area",                                   timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – B1 JJ Cluster",          city:"Delhi", type:"Government", area:"JJ Cluster",          address:"Near B1 & K Block JJ Cluster, opp B-Block Community Hall",                timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Peeragarhi",             city:"Delhi", type:"Government", area:"Peeragarhi",          address:"E-Block, Punjab Migrant Relief Camp, Peeragarhi",                         timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Pitampura",              city:"Delhi", type:"Government", area:"Pitampura",           address:"GP Block, Pitampura",                                                      timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Bhati Mines",            city:"Delhi", type:"Government", area:"Bhati Mines",         address:"Sanjay Colony, Bhati Mines",                                              timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Nand Nagri",             city:"Delhi", type:"Government", area:"Nand Nagri",          address:"C-Block, Nand Nagri, Shahdara",                                           timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+  { name:"Atal Canteen – Sri Ram Nagar",          city:"Delhi", type:"Government", area:"Shahdara",            address:"Near Lal Bagh, Jhuggi Basti, Sri Ram Nagar, Shahdara",                    timings:"7–10AM · 12–3PM · 7–9PM", cost:"₹5–₹15" },
+
+  // ── DELHI: Religious ───────────────────────────────────────────────────────
+  { name:"Bangla Sahib Gurudwara – Langar",       city:"Delhi", type:"Religious",  area:"Connaught Place",    address:"Baba Kharak Singh Marg, Connaught Place",                                 timings:"24 hours (langar served all day)", cost:"Free" },
+  { name:"Sis Ganj Gurudwara – Langar",           city:"Delhi", type:"Religious",  area:"Chandni Chowk",      address:"Chandni Chowk, near Red Fort",                                            timings:"5AM–10PM", cost:"Free" },
+  { name:"Rakab Ganj Gurudwara – Langar",         city:"Delhi", type:"Religious",  area:"New Delhi",          address:"Rakab Ganj Sahib, near Parliament Street",                                timings:"5AM–10PM", cost:"Free" },
+  { name:"Majnu Ka Tila Gurudwara – Langar",      city:"Delhi", type:"Religious",  area:"Majnu Ka Tila",      address:"Majnu Ka Tila, North Delhi",                                              timings:"5AM–9PM", cost:"Free" },
+  { name:"ISKCON Delhi – Prasad",                 city:"Delhi", type:"Religious",  area:"East of Kailash",    address:"Sant Nagar, East of Kailash",                                             timings:"12–2PM · 7–8PM", cost:"₹20–₹30" },
+
+  // ── DELHI: NGO ─────────────────────────────────────────────────────────────
+  { name:"Robin Hood Army – Delhi",               city:"Delhi", type:"NGO",        area:"Citywide",           address:"Multiple points (check rha.net)",                                         timings:"Weekends, event-based", cost:"Free" },
+  { name:"Roti Bank Delhi",                       city:"Delhi", type:"NGO",        area:"Citywide",           address:"Multiple pickup points across Delhi",                                     timings:"7–9PM daily", cost:"Free" },
+  { name:"Delhi Night Shelters – Meal Service",   city:"Delhi", type:"NGO",        area:"Citywide",           address:"200+ shelters under DUSIB (Delhi Urban Shelter Improvement Board)",       timings:"7–9PM", cost:"Free" },
+
+  // ── BANGALORE: Indira Canteens (Government) ────────────────────────────────
+  { name:"Indira Canteen – Majestic",             city:"Bangalore", type:"Government", area:"Majestic",       address:"KSR City Railway Station, Majestic",                                      timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Koramangala",          city:"Bangalore", type:"Government", area:"Koramangala",    address:"Koramangala 5th Block",                                                   timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Jayanagar",            city:"Bangalore", type:"Government", area:"Jayanagar",      address:"Jayanagar 4th Block Bus Stand",                                           timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Rajajinagar",          city:"Bangalore", type:"Government", area:"Rajajinagar",    address:"Rajajinagar, near Chord Road",                                            timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Shivajinagar",         city:"Bangalore", type:"Government", area:"Shivajinagar",   address:"Shivajinagar Bus Terminal",                                               timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Hebbal",               city:"Bangalore", type:"Government", area:"Hebbal",         address:"Hebbal, near Outer Ring Road Flyover",                                    timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Banashankari",         city:"Bangalore", type:"Government", area:"Banashankari",   address:"Banashankari Bus Stand",                                                  timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Whitefield",           city:"Bangalore", type:"Government", area:"Whitefield",     address:"Whitefield Main Road",                                                    timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Electronic City",      city:"Bangalore", type:"Government", area:"Electronic City",address:"Electronic City Phase 1",                                                 timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – HSR Layout",           city:"Bangalore", type:"Government", area:"HSR Layout",     address:"HSR Layout, 27th Main",                                                   timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Yeshwantpur",          city:"Bangalore", type:"Government", area:"Yeshwantpur",    address:"Yeshwantpur, near Railway Station",                                       timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – KR Market",            city:"Bangalore", type:"Government", area:"KR Market",      address:"Krishna Rajendra Market, Avenue Road",                                    timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Malleshwaram",         city:"Bangalore", type:"Government", area:"Malleshwaram",   address:"Malleshwaram 8th Cross",                                                  timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – Indiranagar",          city:"Bangalore", type:"Government", area:"Indiranagar",    address:"Indiranagar 100 Feet Road",                                               timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+  { name:"Indira Canteen – BTM Layout",           city:"Bangalore", type:"Government", area:"BTM Layout",     address:"BTM Layout 2nd Stage",                                                    timings:"6:30–9AM · 12–2:30PM · 7–9PM", cost:"₹5 breakfast · ₹10 meals" },
+
+  // ── BANGALORE: Religious ───────────────────────────────────────────────────
+  { name:"Guru Nanak Gurudwara – Langar",         city:"Bangalore", type:"Religious", area:"Frazer Town",     address:"Frazer Town, Bangalore",                                                  timings:"5AM–8PM", cost:"Free" },
+  { name:"ISKCON Bangalore – Prasad Hall",         city:"Bangalore", type:"Religious", area:"Rajajinagar",    address:"Hare Krishna Hill, Chord Road, Rajajinagar",                              timings:"12–2PM · 7–8PM", cost:"₹30" },
+  { name:"Sri Sathya Sai Seva – Food Distribution",city:"Bangalore", type:"Religious", area:"Whitefield",     address:"Sathya Sai Ashram, Whitefield",                                           timings:"11AM–1PM (selected days)", cost:"Free" },
+
+  // ── BANGALORE: NGO ─────────────────────────────────────────────────────────
+  { name:"Akshaya Patra – Community Kitchen",     city:"Bangalore", type:"NGO",      area:"Rajajinagar",      address:"Rajajinagar, near ISKCON Temple",                                         timings:"8AM–12PM (distribution)",  cost:"Free / subsidized" },
+  { name:"Robin Hood Army – Bangalore",           city:"Bangalore", type:"NGO",      area:"Citywide",         address:"Multiple spots (check rha.net/bangalore)",                                timings:"Weekends, event-based", cost:"Free" },
+  { name:"No Waste India – Bangalore",            city:"Bangalore", type:"NGO",      area:"Koramangala",      address:"Koramangala Hub",                                                         timings:"8–10PM daily", cost:"Free" },
+  { name:"Feeding India – Bangalore",             city:"Bangalore", type:"NGO",      area:"Citywide",         address:"Multiple distribution points",                                            timings:"Event-based", cost:"Free" },
+];
+
+let activeCity = "all";
+let activeType = "all";
+let searchQuery = "";
+
+function render() {
+  const filtered = places.filter(p => {
+    const cityOk = activeCity === "all" || p.city === activeCity;
+    const typeOk = activeType === "all" || p.type === activeType;
+    const q = searchQuery.toLowerCase();
+    const textOk = !q || p.name.toLowerCase().includes(q) || p.area.toLowerCase().includes(q) || p.address.toLowerCase().includes(q);
+    return cityOk && typeOk && textOk;
+  });
+
+  document.getElementById("stats").textContent =
+    `Showing ${filtered.length} of ${places.length} locations`;
+
+  document.getElementById("grid").innerHTML = filtered.map(p => `
+    <div class="card">
+      <div class="card-header">
+        <h2>${p.name}</h2>
+        <span class="badge ${p.type}">${p.type}</span>
+      </div>
+      <div class="meta">
+        <span class="addr">${p.address}</span>
+        <span class="time">${p.timings}</span>
+        <span class="cost">${p.cost}</span>
+        <span class="city-tag">${p.city}</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+document.getElementById("city-filters").addEventListener("click", e => {
+  const btn = e.target.closest("[data-city]");
+  if (!btn) return;
+  activeCity = btn.dataset.city;
+  document.querySelectorAll("[data-city]").forEach(b =>
+    b.classList.toggle("active", b.dataset.city === activeCity));
+  render();
+});
+
+document.getElementById("type-filters").addEventListener("click", e => {
+  const btn = e.target.closest("[data-type]");
+  if (!btn) return;
+  activeType = btn.dataset.type;
+  document.querySelectorAll("[data-type]").forEach(b =>
+    b.classList.toggle("active", b.dataset.type === activeType));
+  render();
+});
+
+document.getElementById("search").addEventListener("input", e => {
+  searchQuery = e.target.value;
+  render();
+});
+
+render();
+</script>
 </body>
 </html>
