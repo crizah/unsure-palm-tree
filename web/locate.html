@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Find Free &amp; Subsidized Food — Delhi &amp; Bangalore</title>
+  <meta name="description" content="Find government canteens, NGO kitchens and free food distribution points near you in Delhi and Bangalore." />
+  <link rel="stylesheet" href="/static/vendor/leaflet.css" />
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body class="locate">
+  <div class="app">
+    <aside class="panel" id="panel" data-state="peek">
+      <div class="handle" id="handle" role="button" tabindex="0" aria-label="Resize results"><span></span></div>
+
+      <form class="search" id="search-form" role="search">
+        <input id="search" type="search" placeholder="Search name or area…" autocomplete="off" aria-label="Search name or area" maxlength="64" />
+        <button type="button" id="locate" class="btn primary" aria-label="Use my location">Near me</button>
+      </form>
+
+      <div class="chips" id="city-chips" aria-label="City"></div>
+      <div class="chips" id="type-chips" aria-label="Type"></div>
+
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <ul class="list" id="list"></ul>
+      <p class="foot">Verify timings before visiting. Map data © OpenStreetMap contributors.</p>
+    </aside>
+    <div id="map" aria-label="Map"></div>
+  </div>
+  <script src="/static/vendor/leaflet.js"></script>
+  <script src="/static/js/locate.js"></script>
+</body>
+</html>

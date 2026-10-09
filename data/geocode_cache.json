@@ -1,0 +1,592 @@
+{
+ "q:3594–3608/XII, opp Shopping Complex, Katra Meena Beg, Malk Ganj, Timarpur, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Anna Nagar, Delhi": {
+  "lat": 28.5695569,
+  "lng": 77.1934709,
+  "precision": "found"
+ },
+ "q:B-Block, Budh Nagar, Inderpuri, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:BTM Layout 2nd Stage, Bangalore": {
+  "lat": 12.9140082,
+  "lng": 77.607945,
+  "precision": "found"
+ },
+ "q:Baba Kharak Singh Marg, Connaught Place, Delhi": {
+  "lat": 28.6260723,
+  "lng": 77.2045796,
+  "precision": "found"
+ },
+ "q:Balmiki Camp, Begum Pur, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Banashankari Bus Stand, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Banashankari, Bangalore": {
+  "lat": 12.9278196,
+  "lng": 77.556621,
+  "precision": "found"
+ },
+ "q:Bawana, Delhi": {
+  "lat": 28.79966,
+  "lng": 77.0328847,
+  "precision": "found"
+ },
+ "q:Begum Pur, Delhi": {
+  "lat": 28.725503,
+  "lng": 77.0583706,
+  "precision": "found"
+ },
+ "q:Bhanwar Singh Camp, Vasant Vihar, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Bhati Mines, Delhi": {
+  "lat": 28.429989,
+  "lng": 77.2259913,
+  "precision": "found"
+ },
+ "q:C-Block, Nand Nagri, Shahdara, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:C-Block, Shahbad Daulatpur (Dairy Area), Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:CS Land, A-Block, SRS Bawana, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:CS Plot, B-Block, Holambi Kalan, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Chandni Chowk, Delhi": {
+  "lat": 28.6559834,
+  "lng": 77.2321937,
+  "precision": "found"
+ },
+ "q:Chandni Chowk, near Red Fort, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Chhatarpur, Delhi": {
+  "lat": 28.5067242,
+  "lng": 77.1750019,
+  "precision": "found"
+ },
+ "q:DDA Flats, Kalkaji, Delhi": {
+  "lat": 28.52991,
+  "lng": 77.2558848,
+  "precision": "found"
+ },
+ "q:DDA Park, Sangam Vihar (near Police Station), Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Dwarka, Delhi": {
+  "lat": 28.6149362,
+  "lng": 77.0227628,
+  "precision": "found"
+ },
+ "q:E-Block, Punjab Migrant Relief Camp, Peeragarhi, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Ekta Vihar, Sector-6, Delhi": {
+  "lat": 28.6229693,
+  "lng": 76.9728105,
+  "precision": "found"
+ },
+ "q:Electronic City Phase 1, Bangalore": {
+  "lat": 12.8447999,
+  "lng": 77.663239,
+  "precision": "found"
+ },
+ "q:Frazer Town, Bangalore, Bangalore": {
+  "lat": 12.9975851,
+  "lng": 77.6136744,
+  "precision": "found"
+ },
+ "q:G-Block Cluster, Jahangirpuri, Azadpur, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:GP Block, Pitampura, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Goyla Dairy, Delhi": {
+  "lat": 28.5805383,
+  "lng": 77.0211517,
+  "precision": "found"
+ },
+ "q:HSR Layout, 27th Main, Bangalore": {
+  "lat": 12.9159916,
+  "lng": 77.6518272,
+  "precision": "found"
+ },
+ "q:Hare Krishna Hill, Chord Road, Rajajinagar, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Hebbal, Bangalore": {
+  "lat": 13.0382184,
+  "lng": 77.5919,
+  "precision": "found"
+ },
+ "q:Hebbal, near Outer Ring Road Flyover, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Holambi Kalan, Delhi": {
+  "lat": 28.8070269,
+  "lng": 77.0967976,
+  "precision": "found"
+ },
+ "q:Inderpuri, Delhi": {
+  "lat": 28.6286841,
+  "lng": 77.1470979,
+  "precision": "found"
+ },
+ "q:Indira Camp No. 3, JJ Cluster, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Indira Camp, Malviya Nagar, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Indiranagar 100 Feet Road, Bangalore": {
+  "lat": 12.9794595,
+  "lng": 77.6406313,
+  "precision": "found"
+ },
+ "q:JJ Cluster, Anna Nagar, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:JJ Cluster, Delhi": {
+  "lat": 28.7954068,
+  "lng": 77.0407904,
+  "precision": "found"
+ },
+ "q:JJ Cluster, Rani Garden (near BVK), Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:JJ Cluster, Sanjay Basti, Timarpur, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Jahangirpuri, Delhi": {
+  "lat": 28.7259717,
+  "lng": 77.162658,
+  "precision": "found"
+ },
+ "q:Jai Vihar, Delhi": {
+  "lat": 28.6916329,
+  "lng": 77.180315,
+  "precision": "found"
+ },
+ "q:Jai Vihar, Phase-I, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Jayanagar 4th Block Bus Stand, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Jayanagar, Bangalore": {
+  "lat": 12.9292731,
+  "lng": 77.5824229,
+  "precision": "found"
+ },
+ "q:Jhilmil Colony, Delhi": {
+  "lat": 28.6698142,
+  "lng": 77.3072827,
+  "precision": "found"
+ },
+ "q:KR Market, Bangalore": {
+  "lat": 12.9641909,
+  "lng": 77.5775789,
+  "precision": "found"
+ },
+ "q:KSR City Railway Station, Majestic, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Khyala, Delhi": {
+  "lat": 28.656392,
+  "lng": 77.1009017,
+  "precision": "found"
+ },
+ "q:Kirti Nagar, Delhi": {
+  "lat": 28.655746,
+  "lng": 77.1506635,
+  "precision": "found"
+ },
+ "q:Koramangala 5th Block, Bangalore": {
+  "lat": 12.9348429,
+  "lng": 77.6189768,
+  "precision": "found"
+ },
+ "q:Koramangala Hub, Bangalore": {
+  "lat": 12.9308301,
+  "lng": 77.6156564,
+  "precision": "found"
+ },
+ "q:Krishna Rajendra Market, Avenue Road, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:M.B. Road, Delhi": {
+  "lat": 28.5377609,
+  "lng": 77.2402779,
+  "precision": "found"
+ },
+ "q:Majestic, Bangalore": {
+  "lat": 12.9779079,
+  "lng": 77.5723936,
+  "precision": "found"
+ },
+ "q:Majnu Ka Tila, North Delhi, Delhi": {
+  "lat": 28.6965737,
+  "lng": 77.2236325,
+  "precision": "found"
+ },
+ "q:Malk Ganj, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Malleshwaram 8th Cross, Bangalore": {
+  "lat": 12.9998274,
+  "lng": 77.5713126,
+  "precision": "found"
+ },
+ "q:Malviya Nagar, Delhi": {
+  "lat": 28.5339201,
+  "lng": 77.2124474,
+  "precision": "found"
+ },
+ "q:Mangolpuri, Delhi": {
+  "lat": 28.6836984,
+  "lng": 77.0914827,
+  "precision": "found"
+ },
+ "q:N-Block, Mangolpuri, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Nand Nagri, Delhi": {
+  "lat": 28.697809,
+  "lng": 77.3057011,
+  "precision": "found"
+ },
+ "q:Naraina, Delhi": {
+  "lat": 28.6264562,
+  "lng": 77.1349668,
+  "precision": "found"
+ },
+ "q:Narela, Delhi": {
+  "lat": 28.8464766,
+  "lng": 77.0856631,
+  "precision": "found"
+ },
+ "q:Near B1 \u0026 K Block JJ Cluster, opp B-Block Community Hall, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Near BVK, G-Block, Mangolpuri, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Near C-35 JJ Cluster, Wazirpur Industrial Area, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Near Lal Bagh, Jhuggi Basti, Sri Ram Nagar, Shahdara, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Near Mohalla Clinic, AB Block, Kela Godown Road, Shalimar Bagh, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Near Veterinary Hospital, Sector-1, Dwarka, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Nehru Nagar, Delhi": {
+  "lat": 28.5685108,
+  "lng": 77.2513847,
+  "precision": "found"
+ },
+ "q:New Delhi, Delhi": {
+  "lat": 28.6138954,
+  "lng": 77.2090057,
+  "precision": "found"
+ },
+ "q:Nordan Camp, S.P. Crusher, M.B. Road, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Opposite Community Hall, Sunlight Colony, Old Seemapuri, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Paschim Puri, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Peeragarhi, Delhi": {
+  "lat": 28.6773142,
+  "lng": 77.0931024,
+  "precision": "found"
+ },
+ "q:Pitampura, Delhi": {
+  "lat": 28.7032676,
+  "lng": 77.1322497,
+  "precision": "found"
+ },
+ "q:Pocket-11, Sector A-6, Narela (HUDCO), Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Pratap Camp, Nehru Nagar, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:R Block JJ Cluster, Raghubir Nagar, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Raghubir Nagar, Delhi": {
+  "lat": 28.6565574,
+  "lng": 77.1122381,
+  "precision": "found"
+ },
+ "q:Rajajinagar, Bangalore": {
+  "lat": 13.0005359,
+  "lng": 77.5496996,
+  "precision": "found"
+ },
+ "q:Rajajinagar, near Chord Road, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Rajajinagar, near ISKCON Temple, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Rajeev Camp, Krishna Market, Jhilmil Colony, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Rakab Ganj Sahib, near Parliament Street, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Rani Garden, Delhi": {
+  "lat": 28.5154264,
+  "lng": 77.2121416,
+  "precision": "found"
+ },
+ "q:Sangam Vihar, Delhi": {
+  "lat": 28.5057128,
+  "lng": 77.2484672,
+  "precision": "found"
+ },
+ "q:Sanjay Camp, Delhi": {
+  "lat": 28.5880583,
+  "lng": 77.178415,
+  "precision": "found"
+ },
+ "q:Sanjay Colony, Bhati Mines, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Sant Nagar, East of Kailash, Delhi": {
+  "lat": 28.5526493,
+  "lng": 77.2461739,
+  "precision": "found"
+ },
+ "q:Sathya Sai Ashram, Whitefield, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Seemapuri, Delhi": {
+  "lat": 28.6807082,
+  "lng": 77.3277509,
+  "precision": "found"
+ },
+ "q:Shahbad Daulatpur, Delhi": {
+  "lat": 28.7508153,
+  "lng": 77.1162765,
+  "precision": "found"
+ },
+ "q:Shahdara, Delhi": {
+  "lat": 28.6734298,
+  "lng": 77.2898858,
+  "precision": "found"
+ },
+ "q:Shaheed Bhagat Singh Camp, Paschim Puri, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Shalimar Bagh, Delhi": {
+  "lat": 28.7019574,
+  "lng": 77.1654317,
+  "precision": "found"
+ },
+ "q:Shanti Camp, Chhatarpur, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Sheikh Sarai, Apeejay School Road, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Sheikh Sarai, Delhi": {
+  "lat": 28.5368964,
+  "lng": 77.2222387,
+  "precision": "found"
+ },
+ "q:Shishu Vatika, Chunna Bhatti, Kirti Nagar, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Shivaji Park, Naraina Industrial Area, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Shivajinagar Bus Terminal, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Shivajinagar, Bangalore": {
+  "lat": 12.9855286,
+  "lng": 77.6054496,
+  "precision": "found"
+ },
+ "q:Shyam Nagar, Delhi": {
+  "lat": 28.5446111,
+  "lng": 77.269071,
+  "precision": "found"
+ },
+ "q:Timarpur, Delhi": {
+  "lat": 28.7012629,
+  "lng": 77.2186795,
+  "precision": "found"
+ },
+ "q:Vacant land, Goyla Dairy, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Vacant land, JJ Cluster Shyam Nagar \u0026 Shikhri Bhatta, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Vacant land, Sector-3, Phase-I, Dwarka, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Vacant parking, F Extension, near GGS Hospital, Khyala, Delhi": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ },
+ "q:Vasant Vihar, Delhi": {
+  "lat": 28.557827,
+  "lng": 77.1611168,
+  "precision": "found"
+ },
+ "q:Wazirpur, Delhi": {
+  "lat": 28.6800843,
+  "lng": 77.1702212,
+  "precision": "found"
+ },
+ "q:Whitefield Main Road, Bangalore": {
+  "lat": 12.9818589,
+  "lng": 77.752035,
+  "precision": "found"
+ },
+ "q:Whitefield, Bangalore": {
+  "lat": 12.9957428,
+  "lng": 77.7579489,
+  "precision": "found"
+ },
+ "q:Yeshwantpur, Bangalore": {
+  "lat": 13.0221838,
+  "lng": 77.5530824,
+  "precision": "found"
+ },
+ "q:Yeshwantpur, near Railway Station, Bangalore": {
+  "lat": 0,
+  "lng": 0,
+  "precision": "none"
+ }
+}
