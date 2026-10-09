@@ -61,6 +61,16 @@ jobs:
           for v in DEPLOY_HOST SSH_PRIVATE_KEY SSH_KNOWN_HOSTS; do
             if [ -z "${!v}" ]; then echo "::error::Repository secret $v is empty or missing"; missing=1; fi
           done
+          # Secrets pasted from a terminal often carry an invisible trailing newline/space: trim it.
+          host="$(printf '%s' "$DEPLOY_HOST" | tr -d '[:space:]')"
+          if [[ ! "$host" =~ ^[A-Za-z0-9.-]+$ ]]; then
+            echo "::error::DEPLOY_HOST must be only the bare IP or hostname (e.g. 13.232.176.46): no quotes, user@ or port"
+            echo "length after trimming whitespace: ${#host} (a plain IPv4 is 7-15)"
+            echo "disallowed characters found (hex):"
+            printf '%s' "$host" | tr -d 'A-Za-z0-9.-' | od -An -tx1 -c
+            missing=1
+          fi
+          echo "DEPLOY_HOST_CLEAN=$host" >> "$GITHUB_ENV"
           exit $missing
 
       - name: Configure SSH
@@ -76,7 +86,7 @@ jobs:
 
       - name: Upload binary and database
         env:
-          HOST: ${{ secrets.DEPLOY_HOST }}
+          HOST: ${{ env.DEPLOY_HOST_CLEAN }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes"
           scp $SSH_OPTS server "deploy@$HOST:/opt/foodmap/bin/server.new"
@@ -84,7 +94,7 @@ jobs:
 
       - name: Swap in and restart
         env:
-          HOST: ${{ secrets.DEPLOY_HOST }}
+          HOST: ${{ env.DEPLOY_HOST_CLEAN }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes"
           ssh $SSH_OPTS "deploy@$HOST" bash -s <<'REMOTE'

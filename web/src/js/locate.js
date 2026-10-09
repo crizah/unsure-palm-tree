@@ -37,8 +37,12 @@
 
   // ---------- data ----------
   let reqSeq = 0;
+  let inflight = null; // AbortController of the request currently running
   async function load({ fit = true } = {}) {
     const seq = ++reqSeq;
+    inflight?.abort(); // only one places request in flight at a time
+    inflight = new AbortController();
+    const { signal } = inflight;
     const p = new URLSearchParams();
     if (state.me) { p.set('lat', state.me.lat); p.set('lng', state.me.lng); p.set('radius', state.me.radius); }
     if (state.city) p.set('city', state.city);
@@ -47,13 +51,14 @@
     p.set('limit', '100');
     setStatus('Loading…');
     try {
-      const res = await fetch(API_BASE + '/api/places?' + p);
+      const res = await fetch(API_BASE + '/api/places?' + p, { signal });
       if (!res.ok) throw new Error(res.status === 429 ? 'Too many requests — try again in a moment.' : 'Could not load places.');
       const data = await res.json();
       if (seq !== reqSeq) return; // a newer request superseded this one
       state.places = data.places;
       render(fit);
     } catch (e) {
+      if (e.name === 'AbortError') return; // superseded by a newer request
       if (seq === reqSeq) setStatus(e.message || 'Could not load places.', true);
     }
   }
@@ -208,12 +213,22 @@
     syncChips(); load({ fit: true });
   }
 
+  // Search is throttled: wait for a pause in typing, skip tiny queries, never resend the same one.
+  const SEARCH_DELAY_MS = 500, SEARCH_MIN_CHARS = 2;
   let searchTimer;
+  function runSearch() {
+    clearTimeout(searchTimer);
+    const q = searchEl.value.trim();
+    if (q.length > 0 && q.length < SEARCH_MIN_CHARS) return; // too short to be useful
+    if (q === state.q) return; // nothing changed since the last request
+    state.q = q;
+    load();
+  }
   searchEl.addEventListener('input', () => {
     clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => { state.q = searchEl.value.trim(); load(); }, 250);
+    searchTimer = setTimeout(runSearch, SEARCH_DELAY_MS);
   });
-  $('search-form').addEventListener('submit', (e) => { e.preventDefault(); clearTimeout(searchTimer); state.q = searchEl.value.trim(); load(); });
+  $('search-form').addEventListener('submit', (e) => { e.preventDefault(); runSearch(); });
 
   const locateBtn = $('locate');
   locateBtn.addEventListener('click', () => {

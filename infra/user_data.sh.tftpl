@@ -32,7 +32,10 @@ PasswordAuthentication no
 KbdInteractiveAuthentication no
 PermitRootLogin no
 SSHD
-systemctl reload ssh
+# Ubuntu 24.04 starts sshd on demand (socket activation), so it may not be running yet:
+# a plain `reload` would fail here. This reloads if running and is a no-op otherwise;
+# the new config is read whenever sshd next starts.
+systemctl try-reload-or-restart ssh
 
 # ---- app directories ----
 # setgid on bin/ and data/ so uploaded files inherit group foodmap (readable by the service)
