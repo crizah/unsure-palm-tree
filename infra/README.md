@@ -1,8 +1,8 @@
 # Deploying the API (AWS Lightsail + Caddy + GitHub Actions)
 
 Terraform creates one Lightsail instance (Ubuntu 24.04, plan `micro_3_1`: 1 GB RAM, 2 vCPU, 40 GB disk, 1 TB transfer, about $7/month) in `ap-south-1` with a static IP. On first boot it
-installs Caddy (HTTPS for `api.crizah.space`), creates a locked-down `foodmap` service user and a
-`deploy` user, and sets up the systemd unit. After that, every push to `main` that touches `api/**`
+installs Caddy (HTTPS for `api.crizah.space`) and sets up the systemd unit. Everything runs as the
+default `ubuntu` user (no extra users); GitHub Actions deploys over SSH as `ubuntu`. After that, every push to `main` that touches `api/**`
 builds the binary in GitHub Actions and ships it **plus `api/data/places.db`** to the server.
 
 The web app (`web/`) is deployed separately by Vercel; it is not part of this.

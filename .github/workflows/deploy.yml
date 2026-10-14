@@ -89,15 +89,15 @@ jobs:
           HOST: ${{ env.DEPLOY_HOST_CLEAN }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes"
-          scp $SSH_OPTS server "deploy@$HOST:/opt/foodmap/bin/server.new"
-          scp $SSH_OPTS data/places.db "deploy@$HOST:/opt/foodmap/data/places.db.new"
+          scp $SSH_OPTS server "ubuntu@$HOST:/opt/foodmap/bin/server.new"
+          scp $SSH_OPTS data/places.db "ubuntu@$HOST:/opt/foodmap/data/places.db.new"
 
       - name: Swap in and restart
         env:
           HOST: ${{ env.DEPLOY_HOST_CLEAN }}
         run: |
           SSH_OPTS="-i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes"
-          ssh $SSH_OPTS "deploy@$HOST" bash -s <<'REMOTE'
+          ssh $SSH_OPTS "ubuntu@$HOST" bash -s <<'REMOTE'
           set -euo pipefail
           chmod 750 /opt/foodmap/bin/server.new
           chmod 640 /opt/foodmap/data/places.db.new

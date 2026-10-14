@@ -16,5 +16,5 @@ output "github_secrets" {
 }
 
 output "ssh_command" {
-  value = "ssh deploy@${aws_lightsail_static_ip.api.ip_address}"
+  value = "ssh ubuntu@${aws_lightsail_static_ip.api.ip_address}"
 }

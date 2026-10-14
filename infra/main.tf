@@ -12,9 +12,8 @@ resource "aws_lightsail_instance" "api" {
   ip_address_type   = "ipv4"
 
   user_data = templatefile("${path.module}/user_data.sh.tftpl", {
-    api_domain     = var.api_domain
-    frontend_urls  = var.frontend_urls
-    ssh_public_key = var.ssh_public_key
+    api_domain    = var.api_domain
+    frontend_urls = var.frontend_urls
   })
 
   tags = {
