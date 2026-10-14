@@ -18,7 +18,7 @@
 | 5. Address search + geocode endpoint | ⏳ Not started |
 | 6. Hardening, tests, mobile polish | 🟡 Partly (headers, rate limit, gzip done; tests not) |
 | 6b. Split into `api/` + `web/` with separate envs | ✅ Done |
-| 7. Deployment: Terraform (t3.micro), Caddy, systemd, GitHub Actions | 🟡 Written and validated, not yet applied (see `infra/README.md`) |
+| 7. Deployment: Terraform (Lightsail 1 GB), Caddy, systemd, GitHub Actions | 🟡 Written and validated, not yet applied (see `infra/README.md`) |
 
 ---
 
@@ -116,14 +116,15 @@ CARTO's free tiles now need an API key (they render an "API KEY REQUIRED" waterm
 ## 🚧 What's left (in order)
 
 1. **Address search.** `GET /api/geocode?q=` proxying Nominatim with a cache and a 1 req/s limit; search own places first, fall back to Nominatim; then wire the search box to recentre the map.
-2. **Fix coordinates.** Review and correct the area-level pins, ideally with real coordinates from the government DB when it arrives.
-3. **Tests.** Store (nearby/bbox/filter queries), API (validation, limits), rate limiter.
-4. **Basemap.** Self-host PMTiles (or pick a keyed provider) and drop the OSM public server.
-5. **Real data ingest.** `cmd/ingest` to load the government/NGO DB into the same schema (drop-in replacement for `places.json`); keep `source`, `source_url`, `verified_at` per row.
-6. **Mobile polish.** Test on real devices (sheet drag, geolocation prompt, safe-area insets), marker clustering if density grows.
-7. **Deploy.** Small VPS (t3.micro is plenty): systemd unit or Dockerfile, Caddy for automatic HTTPS, `-trust-proxy` flag behind the proxy, optional Cloudflare in front.
-8. **README.** Run, seed, deploy instructions.
-9. **Home page.** `/` is intentionally empty for now.
+2. **Search normalisation.** Text search (`q`) is a raw substring `LIKE` on `name`, `area` and `address`, so `ind` also matches "Hindu" or "Behind". Normalise before querying (lowercase, strip accents/punctuation, match on word starts) or add a precomputed `keywords` column (normalised name + area + aliases, e.g. "indira", "atal") with an index, and query that instead.
+3. **Fix coordinates.** Review and correct the area-level pins, ideally with real coordinates from the government DB when it arrives.
+4. **Tests.** Store (nearby/bbox/filter queries), API (validation, limits), rate limiter.
+5. **Basemap.** Self-host PMTiles (or pick a keyed provider) and drop the OSM public server.
+6. **Real data ingest.** `cmd/ingest` to load the government/NGO DB into the same schema (drop-in replacement for `places.json`); keep `source`, `source_url`, `verified_at` per row.
+7. **Mobile polish.** Test on real devices (sheet drag, geolocation prompt, safe-area insets), marker clustering if density grows.
+8. **Deploy.** Small VPS (Lightsail 1 GB plan): systemd unit or Dockerfile, Caddy for automatic HTTPS, `-trust-proxy` flag behind the proxy, optional Cloudflare in front.
+9. **README.** Run, seed, deploy instructions.
+10. **Home page.** `/` is intentionally empty for now.
 
 ---
 
@@ -162,6 +163,22 @@ URLs must be bare origins (`https://example.com`, no path); both apps refuse to 
 ### Deploy
 - **Web → Vercel:** set the project's *Root Directory* to `web`, add env var `API_URL=https://<your-api-origin>`. `vercel.json` handles the rest.
 - **API → VPS:** run the binary behind Caddy (HTTPS), set `PORT` and `FRONTEND_URL=https://<your-vercel-domain>`, use `-trust-proxy`, and disable Caddy access logging of query strings (they contain coordinates).
+
+### Tear down and rebuild (`terraform destroy` → `terraform apply`)
+
+`terraform destroy` deletes the server, its disk, the static IP (released), the firewall and the key pair, and stops AWS billing for them. It does **not** touch DNS, GitHub or Vercel. Everything on the server is lost (binary, `places.db`, any manual edits to `/opt/foodmap/.env`, Caddy's certificates). Keep `infra/terraform.tfstate` and `infra/terraform.tfvars` (both git-ignored, local only): without the state file Terraform can't destroy what it created, and without the tfvars you need your public SSH key again.
+
+**Redo checklist** (a new static IP means a new address and a new host key):
+
+1. `cd infra && terraform apply`, then note the new `public_ip`.
+2. **DNS:** change the `A` record for host `api` to the new IP (host is just `api`, not `api.crizah.space`).
+3. **GitHub secrets:** update `DEPLOY_HOST` (new IP, bare, no quotes) and `SSH_KNOWN_HOSTS` (re-run `ssh-keyscan -t ed25519 <new_ip>` after about 3 minutes, once first boot finishes).
+4. **Trigger a deploy:** nothing is pushed automatically, so run the workflow from the Actions tab (or push a change under `api/`). This uploads the binary and `places.db` and starts the service.
+5. **Check:** `dig +short api.crizah.space @1.1.1.1` shows the new IP, then `curl -i https://api.crizah.space/healthz` returns `ok`. Caddy gets a fresh HTTPS certificate once DNS resolves (Let's Encrypt limits repeat certificates for the same name, so don't rebuild many times in a week).
+
+**Unchanged, no action needed:** `SSH_PRIVATE_KEY` (same key pair), Vercel's `API_URL`, `FRONTEND_URL`, the code and the workflow file.
+
+To rebuild only the server and keep the same IP and DNS, use `terraform apply -replace=aws_lightsail_instance.api` instead. Then only `SSH_KNOWN_HOSTS` changes (new host key), and you re-run the deploy.
 
 ---
 

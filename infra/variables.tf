@@ -10,9 +10,16 @@ variable "name" {
   default     = "crizah_seo"
 }
 
-variable "instance_type" {
-  type    = string
-  default = "t3.micro"
+variable "bundle_id" {
+  description = "Lightsail plan. micro_3_1 = 1 GB RAM, 2 vCPU, 40 GB disk, 1 TB transfer (about $7/month). nano_3_1 = 0.5 GB (about $5). List: aws lightsail get-bundles."
+  type        = string
+  default     = "micro_3_1"
+}
+
+variable "availability_zone_suffix" {
+  description = "Availability zone letter appended to the region (ap-south-1 + a = ap-south-1a)."
+  type        = string
+  default     = "a"
 }
 
 variable "api_domain" {
@@ -41,9 +48,4 @@ variable "ssh_allowed_cidrs" {
   description = "CIDRs allowed to reach SSH (port 22). GitHub Actions runners have no fixed IPs, so the default is open; access is key-only. Tighten if you deploy from elsewhere."
   type        = list(string)
   default     = ["0.0.0.0/0"]
-}
-
-variable "root_volume_gb" {
-  type    = number
-  default = 8
 }

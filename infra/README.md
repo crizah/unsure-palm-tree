@@ -1,6 +1,6 @@
-# Deploying the API (AWS t3.micro + Caddy + GitHub Actions)
+# Deploying the API (AWS Lightsail + Caddy + GitHub Actions)
 
-Terraform creates one Ubuntu 24.04 `t3.micro` in `ap-south-1` with an Elastic IP. On first boot it
+Terraform creates one Lightsail instance (Ubuntu 24.04, plan `micro_3_1`: 1 GB RAM, 2 vCPU, 40 GB disk, 1 TB transfer, about $7/month) in `ap-south-1` with a static IP. On first boot it
 installs Caddy (HTTPS for `api.crizah.space`), creates a locked-down `foodmap` service user and a
 `deploy` user, and sets up the systemd unit. After that, every push to `main` that touches `api/**`
 builds the binary in GitHub Actions and ships it **plus `api/data/places.db`** to the server.
@@ -42,10 +42,11 @@ The web app (`web/`) is deployed separately by Vercel; it is not part of this.
 
 - `terraform.tfstate` is local and git-ignored. Back it up, or add an S3 backend, before relying on it.
 - The instance ignores AMI/user-data changes on purpose, so later `apply`s never replace it. To rebuild it
-  deliberately: `terraform apply -replace=aws_instance.api` (the next deploy re-uploads the DB).
+  deliberately: `terraform apply -replace=aws_lightsail_instance.api` (the next deploy re-uploads the DB).
 - SSH is open to the internet (key-only, no passwords) because GitHub runners have no fixed IPs.
   Tighten `ssh_allowed_cidrs` if you deploy from somewhere else.
 - Port 8080 is not exposed; only Caddy can reach the Go server. Caddy's access log is discarded because
   request URLs contain users' coordinates.
 - Changing `FRONTEND_URL` later: SSH in as `ubuntu` (same key), edit `/opt/foodmap/.env` with sudo, then `sudo systemctl restart foodmap`.
-- A public IPv4 address costs a few dollars a month even with the free-tier instance.
+- Lightsail is a flat monthly price: the public IPv4, disk and transfer are included, and the static IP is free while attached. Plans: `nano_3_1` (0.5 GB, about $5) or `micro_3_1` (1 GB, about $7); change `bundle_id` to switch. List plans with `aws lightsail get-bundles`.
+- Lightsail has its own firewall (set in `main.tf`): only ports 22, 80 and 443 are open.
