@@ -1,7 +1,7 @@
 #!/bin/bash
 # First-boot setup (Lightsail, Ubuntu 24.04). Runs once as root.
 # Log: /var/log/cloud-init-output.log
-set -euo pipefail
+set -eu
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
