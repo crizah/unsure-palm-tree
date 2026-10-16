@@ -1,1 +1,7 @@
 .env
+
+# PocketBase: binary and local-only state. Only the database itself is committed.
+/db/pocketbase
+/db/pb_migrations/
+/db/pb_data/*
+!/db/pb_data/data.db
