@@ -8,7 +8,7 @@
   const TYPES = ['Government', 'NGO', 'Religious'];
   const DEFAULT_VIEW = { center: [20.59, 78.96], zoom: 5 };
   const RADIUS_KM = 5;
-  // API origin is injected at build time from API_URL (see web/build.mjs).
+  // PocketBase origin, injected at build time from API_URL (see web/build.mjs).
   const API_BASE = document.querySelector('meta[name="api-base"]')?.content || '';
 
   const state = { city: '', types: new Set(), q: '', me: null, places: [], selected: null };
@@ -36,41 +36,64 @@
   }
 
   // ---------- data ----------
-  let reqSeq = 0;
-  let inflight = null; // AbortController of the request currently running
-  async function load({ fit = true } = {}) {
-    const seq = ++reqSeq;
-    inflight?.abort(); // only one places request in flight at a time
-    inflight = new AbortController();
-    const { signal } = inflight;
-    const p = new URLSearchParams();
-    if (state.me) { p.set('lat', state.me.lat); p.set('lng', state.me.lng); p.set('radius', state.me.radius); }
-    if (state.city) p.set('city', state.city);
-    if (state.types.size) p.set('type', [...state.types].join(','));
-    if (state.q) p.set('q', state.q);
-    p.set('limit', '100');
+  // All places are fetched once from PocketBase (a few KB) and filtered here,
+  // so filters and search are instant and the user's location never leaves the device.
+  let all = [];
+  async function loadAll() {
     setStatus('Loading…');
     try {
-      const res = await fetch(API_BASE + '/api/places?' + p, { signal });
-      if (!res.ok) throw new Error(res.status === 429 ? 'Too many requests — try again in a moment.' : 'Could not load places.');
-      const data = await res.json();
-      if (seq !== reqSeq) return; // a newer request superseded this one
-      state.places = data.places;
-      render(fit);
+      const out = [];
+      for (let page = 1, pages = 1; page <= pages; page++) {
+        const res = await fetch(`${API_BASE}/api/collections/places/records?perPage=500&page=${page}&sort=name`);
+        if (!res.ok) throw new Error(res.status === 429 ? 'Too many requests — try again in a moment.' : 'Could not load places.');
+        const data = await res.json();
+        pages = data.totalPages;
+        for (const r of data.items) {
+          const mapped = r.geo_precision !== 'none' && r.lat && r.lng;
+          out.push({ ...r, lat: mapped ? r.lat : null, lng: mapped ? r.lng : null, hay: norm(`${r.name} ${r.area} ${r.address}`) });
+        }
+      }
+      all = out;
+      renderCityChips();
+      apply();
     } catch (e) {
-      if (e.name === 'AbortError') return; // superseded by a newer request
-      if (seq === reqSeq) setStatus(e.message || 'Could not load places.', true);
+      setStatus(e.message || 'Could not load places.', true);
     }
   }
 
-  async function loadCities() {
-    try {
-      const res = await fetch(API_BASE + '/api/cities');
-      const { cities } = await res.json();
-      const wrap = $('city-chips');
-      wrap.replaceChildren(chip('All cities', '', true, () => setCity('')));
-      for (const c of cities) wrap.append(chip(c.city, c.city, false, () => setCity(c.city)));
-    } catch { /* city chips are optional; location and search still work */ }
+  const norm = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  function haversineKm(lat1, lng1, lat2, lng2) {
+    const r = Math.PI / 180, dLat = (lat2 - lat1) * r, dLng = (lng2 - lng1) * r;
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLng / 2) ** 2;
+    return 12742 * Math.asin(Math.sqrt(a));
+  }
+
+  // Each search word must match the start of a word ("ind" finds Indira, not Hindu).
+  function matches(p, words) {
+    return words.every((w) => p.hay.startsWith(w) || p.hay.includes(' ' + w));
+  }
+
+  function apply({ fit = true } = {}) {
+    const words = norm(state.q).split(/\s+/).filter(Boolean);
+    let list = all.filter((p) =>
+      (!state.city || p.city === state.city) &&
+      (!state.types.size || state.types.has(p.type)) &&
+      matches(p, words));
+    if (state.me) {
+      list = list
+        .filter((p) => p.lat != null)
+        .map((p) => ({ ...p, distance_km: haversineKm(state.me.lat, state.me.lng, p.lat, p.lng) }))
+        .filter((p) => p.distance_km <= state.me.radius)
+        .sort((a, b) => a.distance_km - b.distance_km);
+    }
+    state.places = list;
+    render(fit);
+  }
+
+  function renderCityChips() {
+    const wrap = $('city-chips');
+    wrap.replaceChildren(chip('All cities', '', true, () => setCity('')));
+    for (const c of [...new Set(all.map((p) => p.city))].sort()) wrap.append(chip(c, c, false, () => setCity(c)));
   }
 
   // ---------- rendering ----------
@@ -206,29 +229,20 @@
   // ---------- actions ----------
   function setCity(city) {
     state.city = city; state.me = null; meLayer.clearLayers();
-    syncChips(); load();
+    syncChips(); apply();
   }
   function toggleType(t) {
     state.types.has(t) ? state.types.delete(t) : state.types.add(t);
-    syncChips(); load({ fit: true });
+    syncChips(); apply();
   }
 
-  // Search is throttled: wait for a pause in typing, skip tiny queries, never resend the same one.
-  const SEARCH_DELAY_MS = 500, SEARCH_MIN_CHARS = 2;
-  let searchTimer;
-  function runSearch() {
-    clearTimeout(searchTimer);
-    const q = searchEl.value.trim();
-    if (q.length > 0 && q.length < SEARCH_MIN_CHARS) return; // too short to be useful
-    if (q === state.q) return; // nothing changed since the last request
-    state.q = q;
-    load();
-  }
   searchEl.addEventListener('input', () => {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(runSearch, SEARCH_DELAY_MS);
+    const q = searchEl.value.trim();
+    if (q === state.q) return;
+    state.q = q;
+    apply();
   });
-  $('search-form').addEventListener('submit', (e) => { e.preventDefault(); runSearch(); });
+  $('search-form').addEventListener('submit', (e) => e.preventDefault());
 
   const locateBtn = $('locate');
   locateBtn.addEventListener('click', () => {
@@ -241,7 +255,7 @@
       meLayer.clearLayers();
       L.marker([state.me.lat, state.me.lng], { icon: L.divIcon({ className: '', html: '<div class="me"></div>', iconSize: [16, 16], iconAnchor: [8, 8] }), interactive: false, keyboard: false }).addTo(meLayer);
       L.circle([state.me.lat, state.me.lng], { radius: state.me.radius * 1000, color: '#000', weight: 1, dashArray: '4 4', fillOpacity: 0.03, interactive: false }).addTo(meLayer);
-      load();
+      apply();
     }, (err) => {
       locateBtn.disabled = false;
       setStatus(err.code === 1 ? 'Location permission denied. Pick a city or search instead.' : 'Could not get your location. Pick a city or search instead.', true);
@@ -293,6 +307,5 @@
 
   // ---------- boot ----------
   renderTypeChips();
-  loadCities();
-  load();
+  loadAll();
 })();

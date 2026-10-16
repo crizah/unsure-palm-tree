@@ -6,7 +6,10 @@
   "area": "Holambi Kalan",
   "address": "CS Plot, B-Block, Holambi Kalan",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.8070269,
+  "lng": 77.0967976,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Anna Nagar",
@@ -15,7 +18,10 @@
   "area": "Anna Nagar",
   "address": "JJ Cluster, Anna Nagar",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5695569,
+  "lng": 77.1934709,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Dwarka Sector 3",
@@ -24,7 +30,10 @@
   "area": "Dwarka",
   "address": "Vacant land, Sector-3, Phase-I, Dwarka",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6149362,
+  "lng": 77.0227628,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Paschim Puri",
@@ -33,7 +42,10 @@
   "area": "Paschim Puri",
   "address": "Shaheed Bhagat Singh Camp, Paschim Puri",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "Atal Canteen – Shalimar Bagh",
@@ -42,7 +54,10 @@
   "area": "Shalimar Bagh",
   "address": "Near Mohalla Clinic, AB Block, Kela Godown Road, Shalimar Bagh",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.7019574,
+  "lng": 77.1654317,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Kalkaji",
@@ -51,7 +66,10 @@
   "area": "Kalkaji",
   "address": "DDA Flats, Kalkaji",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.52991,
+  "lng": 77.2558848,
+  "geo_precision": "address"
  },
  {
   "name": "Atal Canteen – Sunlight Colony",
@@ -60,7 +78,10 @@
   "area": "Seemapuri",
   "address": "Opposite Community Hall, Sunlight Colony, Old Seemapuri",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6807082,
+  "lng": 77.3277509,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Vasant Vihar",
@@ -69,7 +90,10 @@
   "area": "Vasant Vihar",
   "address": "Bhanwar Singh Camp, Vasant Vihar",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.557827,
+  "lng": 77.1611168,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Kirti Nagar",
@@ -78,7 +102,10 @@
   "area": "Kirti Nagar",
   "address": "Shishu Vatika, Chunna Bhatti, Kirti Nagar",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.655746,
+  "lng": 77.1506635,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Jahangirpuri",
@@ -87,7 +114,10 @@
   "area": "Jahangirpuri",
   "address": "G-Block Cluster, Jahangirpuri, Azadpur",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.7259717,
+  "lng": 77.162658,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Khyala",
@@ -96,7 +126,10 @@
   "area": "Khyala",
   "address": "Vacant parking, F Extension, near GGS Hospital, Khyala",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.656392,
+  "lng": 77.1009017,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Nehru Nagar",
@@ -105,7 +138,10 @@
   "area": "Nehru Nagar",
   "address": "Pratap Camp, Nehru Nagar",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5685108,
+  "lng": 77.2513847,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Goyla Dairy",
@@ -114,7 +150,10 @@
   "area": "Goyla Dairy",
   "address": "Vacant land, Goyla Dairy",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5805383,
+  "lng": 77.0211517,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Raghubir Nagar",
@@ -123,7 +162,10 @@
   "area": "Raghubir Nagar",
   "address": "R Block JJ Cluster, Raghubir Nagar",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6565574,
+  "lng": 77.1122381,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Malviya Nagar",
@@ -132,7 +174,10 @@
   "area": "Malviya Nagar",
   "address": "Indira Camp, Malviya Nagar",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5339201,
+  "lng": 77.2124474,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Bawana",
@@ -141,7 +186,10 @@
   "area": "Bawana",
   "address": "CS Land, A-Block, SRS Bawana",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.79966,
+  "lng": 77.0328847,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Sheikh Sarai",
@@ -150,7 +198,10 @@
   "area": "Sheikh Sarai",
   "address": "Sheikh Sarai, Apeejay School Road",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5368964,
+  "lng": 77.2222387,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Timarpur (Sanjay Basti)",
@@ -159,7 +210,10 @@
   "area": "Timarpur",
   "address": "JJ Cluster, Sanjay Basti, Timarpur",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.7012629,
+  "lng": 77.2186795,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Dwarka Sector 1",
@@ -168,7 +222,10 @@
   "area": "Dwarka",
   "address": "Near Veterinary Hospital, Sector-1, Dwarka",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6149362,
+  "lng": 77.0227628,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Chhatarpur",
@@ -177,7 +234,10 @@
   "area": "Chhatarpur",
   "address": "Shanti Camp, Chhatarpur",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5067242,
+  "lng": 77.1750019,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Malk Ganj",
@@ -186,7 +246,10 @@
   "area": "Malk Ganj",
   "address": "3594–3608/XII, opp Shopping Complex, Katra Meena Beg, Malk Ganj, Timarpur",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "Atal Canteen – Mangolpuri G-Block",
@@ -195,7 +258,10 @@
   "area": "Mangolpuri",
   "address": "Near BVK, G-Block, Mangolpuri",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6836984,
+  "lng": 77.0914827,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Mangolpuri N-Block",
@@ -204,7 +270,10 @@
   "area": "Mangolpuri",
   "address": "N-Block, Mangolpuri",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6836984,
+  "lng": 77.0914827,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Inderpuri",
@@ -213,7 +282,10 @@
   "area": "Inderpuri",
   "address": "B-Block, Budh Nagar, Inderpuri",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6286841,
+  "lng": 77.1470979,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Sanjay Camp",
@@ -222,7 +294,10 @@
   "area": "Sanjay Camp",
   "address": "Sanjay Camp",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5880583,
+  "lng": 77.178415,
+  "geo_precision": "address"
  },
  {
   "name": "Atal Canteen – Rani Garden",
@@ -231,7 +306,10 @@
   "area": "Rani Garden",
   "address": "JJ Cluster, Rani Garden (near BVK)",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5154264,
+  "lng": 77.2121416,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Wazirpur",
@@ -240,7 +318,10 @@
   "area": "Wazirpur",
   "address": "Near C-35 JJ Cluster, Wazirpur Industrial Area",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6800843,
+  "lng": 77.1702212,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Shyam Nagar",
@@ -249,7 +330,10 @@
   "area": "Shyam Nagar",
   "address": "Vacant land, JJ Cluster Shyam Nagar & Shikhri Bhatta",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5446111,
+  "lng": 77.269071,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Jai Vihar",
@@ -258,7 +342,10 @@
   "area": "Jai Vihar",
   "address": "Jai Vihar, Phase-I",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6916329,
+  "lng": 77.180315,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Sangam Vihar",
@@ -267,7 +354,10 @@
   "area": "Sangam Vihar",
   "address": "DDA Park, Sangam Vihar (near Police Station)",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5057128,
+  "lng": 77.2484672,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Ekta Vihar",
@@ -276,7 +366,10 @@
   "area": "Ekta Vihar",
   "address": "Ekta Vihar, Sector-6",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6229693,
+  "lng": 76.9728105,
+  "geo_precision": "address"
  },
  {
   "name": "Atal Canteen – Indira Camp No. 3",
@@ -285,7 +378,10 @@
   "area": "JJ Cluster",
   "address": "Indira Camp No. 3, JJ Cluster",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "Atal Canteen – Begum Pur",
@@ -294,7 +390,10 @@
   "area": "Begum Pur",
   "address": "Balmiki Camp, Begum Pur",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.725503,
+  "lng": 77.0583706,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Narela (HUDCO)",
@@ -303,7 +402,10 @@
   "area": "Narela",
   "address": "Pocket-11, Sector A-6, Narela (HUDCO)",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.8464766,
+  "lng": 77.0856631,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – M.B. Road",
@@ -312,7 +414,10 @@
   "area": "M.B. Road",
   "address": "Nordan Camp, S.P. Crusher, M.B. Road",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.5377609,
+  "lng": 77.2402779,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Shahbad Daulatpur",
@@ -321,7 +426,10 @@
   "area": "Shahbad Daulatpur",
   "address": "C-Block, Shahbad Daulatpur (Dairy Area)",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.7508153,
+  "lng": 77.1162765,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Jhilmil Colony",
@@ -330,7 +438,10 @@
   "area": "Jhilmil Colony",
   "address": "Rajeev Camp, Krishna Market, Jhilmil Colony",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6698142,
+  "lng": 77.3072827,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Naraina Industrial Area",
@@ -339,7 +450,10 @@
   "area": "Naraina",
   "address": "Shivaji Park, Naraina Industrial Area",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6264562,
+  "lng": 77.1349668,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – B1 JJ Cluster",
@@ -348,7 +462,10 @@
   "area": "JJ Cluster",
   "address": "Near B1 & K Block JJ Cluster, opp B-Block Community Hall",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "Atal Canteen – Peeragarhi",
@@ -357,7 +474,10 @@
   "area": "Peeragarhi",
   "address": "E-Block, Punjab Migrant Relief Camp, Peeragarhi",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6773142,
+  "lng": 77.0931024,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Pitampura",
@@ -366,7 +486,10 @@
   "area": "Pitampura",
   "address": "GP Block, Pitampura",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.7032676,
+  "lng": 77.1322497,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Bhati Mines",
@@ -375,7 +498,10 @@
   "area": "Bhati Mines",
   "address": "Sanjay Colony, Bhati Mines",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.429989,
+  "lng": 77.2259913,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Nand Nagri",
@@ -384,7 +510,10 @@
   "area": "Nand Nagri",
   "address": "C-Block, Nand Nagri, Shahdara",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.697809,
+  "lng": 77.3057011,
+  "geo_precision": "area"
  },
  {
   "name": "Atal Canteen – Sri Ram Nagar",
@@ -393,7 +522,10 @@
   "area": "Shahdara",
   "address": "Near Lal Bagh, Jhuggi Basti, Sri Ram Nagar, Shahdara",
   "timings": "7–10AM · 12–3PM · 7–9PM",
-  "cost": "₹5–₹15"
+  "cost": "₹5–₹15",
+  "lat": 28.6734298,
+  "lng": 77.2898858,
+  "geo_precision": "area"
  },
  {
   "name": "Bangla Sahib Gurudwara – Langar",
@@ -402,7 +534,10 @@
   "area": "Connaught Place",
   "address": "Baba Kharak Singh Marg, Connaught Place",
   "timings": "24 hours (langar served all day)",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": 28.6260723,
+  "lng": 77.2045796,
+  "geo_precision": "address"
  },
  {
   "name": "Sis Ganj Gurudwara – Langar",
@@ -411,7 +546,10 @@
   "area": "Chandni Chowk",
   "address": "Chandni Chowk, near Red Fort",
   "timings": "5AM–10PM",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": 28.6559834,
+  "lng": 77.2321937,
+  "geo_precision": "area"
  },
  {
   "name": "Rakab Ganj Gurudwara – Langar",
@@ -420,7 +558,10 @@
   "area": "New Delhi",
   "address": "Rakab Ganj Sahib, near Parliament Street",
   "timings": "5AM–10PM",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": 28.6138954,
+  "lng": 77.2090057,
+  "geo_precision": "area"
  },
  {
   "name": "Majnu Ka Tila Gurudwara – Langar",
@@ -429,7 +570,10 @@
   "area": "Majnu Ka Tila",
   "address": "Majnu Ka Tila, North Delhi",
   "timings": "5AM–9PM",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": 28.6965737,
+  "lng": 77.2236325,
+  "geo_precision": "address"
  },
  {
   "name": "ISKCON Delhi – Prasad",
@@ -438,7 +582,10 @@
   "area": "East of Kailash",
   "address": "Sant Nagar, East of Kailash",
   "timings": "12–2PM · 7–8PM",
-  "cost": "₹20–₹30"
+  "cost": "₹20–₹30",
+  "lat": 28.5526493,
+  "lng": 77.2461739,
+  "geo_precision": "address"
  },
  {
   "name": "Robin Hood Army – Delhi",
@@ -447,7 +594,10 @@
   "area": "Citywide",
   "address": "Multiple points (check rha.net)",
   "timings": "Weekends, event-based",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "Roti Bank Delhi",
@@ -456,7 +606,10 @@
   "area": "Citywide",
   "address": "Multiple pickup points across Delhi",
   "timings": "7–9PM daily",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "Delhi Night Shelters – Meal Service",
@@ -465,7 +618,10 @@
   "area": "Citywide",
   "address": "200+ shelters under DUSIB (Delhi Urban Shelter Improvement Board)",
   "timings": "7–9PM",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "Indira Canteen – Majestic",
@@ -474,7 +630,10 @@
   "area": "Majestic",
   "address": "KSR City Railway Station, Majestic",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9779079,
+  "lng": 77.5723936,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – Koramangala",
@@ -483,7 +642,10 @@
   "area": "Koramangala",
   "address": "Koramangala 5th Block",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9348429,
+  "lng": 77.6189768,
+  "geo_precision": "address"
  },
  {
   "name": "Indira Canteen – Jayanagar",
@@ -492,7 +654,10 @@
   "area": "Jayanagar",
   "address": "Jayanagar 4th Block Bus Stand",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9292731,
+  "lng": 77.5824229,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – Rajajinagar",
@@ -501,7 +666,10 @@
   "area": "Rajajinagar",
   "address": "Rajajinagar, near Chord Road",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 13.0005359,
+  "lng": 77.5496996,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – Shivajinagar",
@@ -510,7 +678,10 @@
   "area": "Shivajinagar",
   "address": "Shivajinagar Bus Terminal",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9855286,
+  "lng": 77.6054496,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – Hebbal",
@@ -519,7 +690,10 @@
   "area": "Hebbal",
   "address": "Hebbal, near Outer Ring Road Flyover",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 13.0382184,
+  "lng": 77.5919,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – Banashankari",
@@ -528,7 +702,10 @@
   "area": "Banashankari",
   "address": "Banashankari Bus Stand",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9278196,
+  "lng": 77.556621,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – Whitefield",
@@ -537,7 +714,10 @@
   "area": "Whitefield",
   "address": "Whitefield Main Road",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9818589,
+  "lng": 77.752035,
+  "geo_precision": "address"
  },
  {
   "name": "Indira Canteen – Electronic City",
@@ -546,7 +726,10 @@
   "area": "Electronic City",
   "address": "Electronic City Phase 1",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.8447999,
+  "lng": 77.663239,
+  "geo_precision": "address"
  },
  {
   "name": "Indira Canteen – HSR Layout",
@@ -555,7 +738,10 @@
   "area": "HSR Layout",
   "address": "HSR Layout, 27th Main",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9159916,
+  "lng": 77.6518272,
+  "geo_precision": "address"
  },
  {
   "name": "Indira Canteen – Yeshwantpur",
@@ -564,7 +750,10 @@
   "area": "Yeshwantpur",
   "address": "Yeshwantpur, near Railway Station",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 13.0221838,
+  "lng": 77.5530824,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – KR Market",
@@ -573,7 +762,10 @@
   "area": "KR Market",
   "address": "Krishna Rajendra Market, Avenue Road",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9641909,
+  "lng": 77.5775789,
+  "geo_precision": "area"
  },
  {
   "name": "Indira Canteen – Malleshwaram",
@@ -582,7 +774,10 @@
   "area": "Malleshwaram",
   "address": "Malleshwaram 8th Cross",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9998274,
+  "lng": 77.5713126,
+  "geo_precision": "address"
  },
  {
   "name": "Indira Canteen – Indiranagar",
@@ -591,7 +786,10 @@
   "area": "Indiranagar",
   "address": "Indiranagar 100 Feet Road",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9794595,
+  "lng": 77.6406313,
+  "geo_precision": "address"
  },
  {
   "name": "Indira Canteen – BTM Layout",
@@ -600,7 +798,10 @@
   "area": "BTM Layout",
   "address": "BTM Layout 2nd Stage",
   "timings": "6:30–9AM · 12–2:30PM · 7–9PM",
-  "cost": "₹5 breakfast · ₹10 meals"
+  "cost": "₹5 breakfast · ₹10 meals",
+  "lat": 12.9140082,
+  "lng": 77.607945,
+  "geo_precision": "address"
  },
  {
   "name": "Guru Nanak Gurudwara – Langar",
@@ -609,7 +810,10 @@
   "area": "Frazer Town",
   "address": "Frazer Town, Bangalore",
   "timings": "5AM–8PM",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": 12.9975851,
+  "lng": 77.6136744,
+  "geo_precision": "address"
  },
  {
   "name": "ISKCON Bangalore – Prasad Hall",
@@ -618,7 +822,10 @@
   "area": "Rajajinagar",
   "address": "Hare Krishna Hill, Chord Road, Rajajinagar",
   "timings": "12–2PM · 7–8PM",
-  "cost": "₹30"
+  "cost": "₹30",
+  "lat": 13.0005359,
+  "lng": 77.5496996,
+  "geo_precision": "area"
  },
  {
   "name": "Sri Sathya Sai Seva – Food Distribution",
@@ -627,7 +834,10 @@
   "area": "Whitefield",
   "address": "Sathya Sai Ashram, Whitefield",
   "timings": "11AM–1PM (selected days)",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": 12.9957428,
+  "lng": 77.7579489,
+  "geo_precision": "area"
  },
  {
   "name": "Akshaya Patra – Community Kitchen",
@@ -636,7 +846,10 @@
   "area": "Rajajinagar",
   "address": "Rajajinagar, near ISKCON Temple",
   "timings": "8AM–12PM (distribution)",
-  "cost": "Free / subsidized"
+  "cost": "Free / subsidized",
+  "lat": 13.0005359,
+  "lng": 77.5496996,
+  "geo_precision": "area"
  },
  {
   "name": "Robin Hood Army – Bangalore",
@@ -645,7 +858,10 @@
   "area": "Citywide",
   "address": "Multiple spots (check rha.net/bangalore)",
   "timings": "Weekends, event-based",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  },
  {
   "name": "No Waste India – Bangalore",
@@ -654,7 +870,10 @@
   "area": "Koramangala",
   "address": "Koramangala Hub",
   "timings": "8–10PM daily",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": 12.9308301,
+  "lng": 77.6156564,
+  "geo_precision": "address"
  },
  {
   "name": "Feeding India – Bangalore",
@@ -663,6 +882,9 @@
   "area": "Citywide",
   "address": "Multiple distribution points",
   "timings": "Event-based",
-  "cost": "Free"
+  "cost": "Free",
+  "lat": null,
+  "lng": null,
+  "geo_precision": "none"
  }
 ]
