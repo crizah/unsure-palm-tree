@@ -123,9 +123,9 @@ body.locate { overflow: hidden; }
    ============================================= */
 body.home, body.about, body.blog {
   height: auto;
-  --ca: #c8410a;        /* saffron-orange accent */
-  --ca-h: #a33409;      /* accent hover */
-  --ca-soft: #fff3ee;   /* accent tint */
+  --ca: #fe019a;        /* saffron-orange accent */
+  --ca-h: #cb0179;      /* accent hover */
+  --ca-soft: #ffe6f5;   /* accent tint */
   --alt: #f5f4f1;       /* off-white section bg */
   --cb: #e2ddd8;        /* content border */
   --cm: #6b6560;        /* muted text */
