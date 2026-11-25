@@ -46,9 +46,13 @@ export function build() {
     "form-action 'none'",
   ].join('; ');
 
+  const contentCsp = csp({ img: '', connect: "'none'" });
   const pageCsp = {
-    'index.html': csp({ img: '', connect: "'none'" }),
+    'index.html': contentCsp,
     'locate.html': csp({ img: 'https://tile.openstreetmap.org', connect: apiUrl }),
+    'about.html': contentCsp,
+    'blog/delhi.html': contentCsp,
+    'blog/bangalore.html': contentCsp,
   };
 
   const src = join(root, 'src'), dist = join(root, 'dist');

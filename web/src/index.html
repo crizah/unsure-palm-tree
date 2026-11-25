@@ -4,9 +4,142 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Security-Policy" content="{{CSP}}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free &amp; Subsidized Food Places</title>
+  <title>Free Food Near Me — Find Free Meals in Delhi &amp; Bangalore | Crizah</title>
+  <meta name="description" content="Find free food near you in Delhi and Bangalore. Locate Atal Canteens, Indira Canteens, NGO kitchens and free meal distribution points on an interactive map. No registration needed." />
+  <link rel="canonical" href="https://geo.crizah.space/" />
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Crizah" />
+  <meta property="og:title" content="Free Food Near Me — Find Free Meals in Delhi &amp; Bangalore" />
+  <meta property="og:description" content="Find free food near you in Delhi and Bangalore. Locate Atal Canteens, Indira Canteens, NGO kitchens and free meal distribution points on an interactive map." />
+  <meta property="og:url" content="https://geo.crizah.space/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Free Food Near Me — Find Free Meals in Delhi &amp; Bangalore" />
+  <meta name="twitter:description" content="Find free food near you in Delhi and Bangalore. Locate Atal Canteens, Indira Canteens, NGO kitchens and free meal distribution points on an interactive map." />
+
+  <!-- Schema: WebSite + Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://geo.crizah.space/#website",
+        "url": "https://geo.crizah.space/",
+        "name": "Crizah",
+        "description": "Find free and subsidised food near you in Delhi and Bangalore",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://geo.crizah.space/locate?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://geo.crizah.space/#organization",
+        "name": "Crizah",
+        "url": "https://geo.crizah.space/",
+        "description": "Free food locator for Delhi and Bangalore — maps government canteens, NGO kitchens and community feeding programmes"
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body class="home">
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="/" class="site-logo">Crizah</a>
+    <ul>
+      <li><a href="/locate" class="nav-cta">Find Food</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/blog/delhi">Delhi</a></li>
+      <li><a href="/blog/bangalore">Bangalore</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>Find Free Food Near You</h1>
+      <p class="lead">In Delhi and Bangalore, hundreds of canteens, NGO kitchens, and community feeding programmes serve free or subsidised meals every day. We map them all so you can find one in minutes.</p>
+      <div class="cta-row">
+        <a href="/locate" class="cta-btn">Open the Map</a>
+        <a href="/about" class="cta-btn secondary">How It Works</a>
+      </div>
+    </div>
+
+    <div class="content-wrap">
+
+      <h2>What We Map</h2>
+      <p>Crizah maps every type of free and cheap food resource in Delhi and Bangalore — updated regularly so you get accurate timings and locations.</p>
+      <div class="feat-grid">
+        <div class="feat-grid-item">
+          <strong>Government Canteens</strong>
+          <span>Atal Canteens in Delhi and Indira Canteens in Bangalore — meals from ₹5.</span>
+        </div>
+        <div class="feat-grid-item">
+          <strong>NGO Kitchens</strong>
+          <span>Free meals from organisations like Feeding India, Roti Bank, Robin Hood Army.</span>
+        </div>
+        <div class="feat-grid-item">
+          <strong>Religious Langars</strong>
+          <span>Gurudwara langars and temple annadanams open to everyone, every day.</span>
+        </div>
+        <div class="feat-grid-item">
+          <strong>Distribution Points</strong>
+          <span>Fixed and mobile food distribution sites run by NGOs and civic volunteers.</span>
+        </div>
+      </div>
+
+      <h2>Free Food in Delhi</h2>
+      <p>Delhi has one of the largest networks of subsidised food in India. The <strong>Atal Canteen</strong> scheme (also called Indra Café) operates across all 272 wards, serving breakfast for ₹5 and full meals for ₹10. Beyond government canteens, dozens of NGOs run daily free food programmes for the poor, the elderly, and daily wage workers.</p>
+      <p>Major Gurudwaras in Delhi — including Bangla Sahib and Sis Ganj Sahib — run 24-hour langars that are open to anyone regardless of religion or background. Many distribute thousands of meals a day at no cost.</p>
+      <p>Read our full guide: <a href="/blog/delhi">Free Food in Delhi — Atal Canteens, NGOs &amp; Distribution Points</a>.</p>
+
+      <h2>Free Food in Bangalore</h2>
+      <p>Bangalore's <strong>Indira Canteen</strong> network, run by BBMP, serves subsidised meals at ₹5 for breakfast and ₹10 for lunch and dinner at over 190 locations across the city. For daily wage workers and migrant labourers especially, these canteens make a real difference.</p>
+      <p>Several large NGOs are also active in Bangalore — including the Akshaya Patra Foundation, which serves mid-day meals, and the Robin Hood Army, which distributes surplus food from restaurants to those who need it.</p>
+      <p>Read our full guide: <a href="/blog/bangalore">Free Food in Bangalore — Indira Canteen, NGOs &amp; More</a>.</p>
+
+      <h2>Who Is This For?</h2>
+      <ul>
+        <li>Daily wage workers and construction labourers looking for cheap food near their worksite</li>
+        <li>Students on a tight budget who need an affordable meal</li>
+        <li>Elderly people without family support in the city</li>
+        <li>Migrants who have recently arrived and do not know where to look</li>
+        <li>Anyone facing temporary food insecurity — no registration or ID required at most points</li>
+      </ul>
+
+      <h2>How to Use Crizah</h2>
+      <ol>
+        <li><strong>Open the map</strong> at <a href="/locate">/locate</a>.</li>
+        <li><strong>Allow location access</strong> or search by neighbourhood name.</li>
+        <li><strong>Filter by city and type</strong> — Government, NGO, or Religious.</li>
+        <li><strong>Tap a pin</strong> to see the name, address, and timings.</li>
+        <li><strong>Verify timings</strong> before visiting — hours can change on public holidays.</li>
+      </ol>
+      <p><a href="/locate" class="cta-btn" style="display:inline-flex;margin-top:8px">Open the Map →</a></p>
+
+      <h2>About This Project</h2>
+      <p>Crizah is an open project to make free food resources easy to discover. We believe no one should go hungry simply because they did not know where to look. <a href="/about">Learn more about us</a>.</p>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2025 Crizah — Free Food Locator</span>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="/">Home</a>
+      <a href="/locate">Find Food</a>
+      <a href="/about">About</a>
+      <a href="/blog/delhi">Delhi Guide</a>
+      <a href="/blog/bangalore">Bangalore Guide</a>
+    </nav>
+  </footer>
+
 </body>
 </html>
