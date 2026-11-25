@@ -36,17 +36,20 @@ export function build() {
   loadDotEnv(join(root, '.env'));
   const apiUrl = origin('API_URL');
 
+  const gtm = 'https://www.googletagmanager.com';
+  const ga  = 'https://www.google-analytics.com';
+
   const csp = (extra) => [
     "default-src 'none'",
-    "script-src 'self'",
-    "style-src 'self' 'unsafe-inline'", // Leaflet sets inline positioning styles
-    `img-src 'self' data: ${extra.img}`.trim(),
-    `connect-src ${extra.connect}`.trim(),
+    `script-src 'self' 'unsafe-inline' ${gtm}`,
+    "style-src 'self' 'unsafe-inline'",
+    `img-src 'self' data: ${gtm} ${extra.img}`.trim(),
+    `connect-src ${gtm} ${ga} ${extra.connect}`.trim(),
     "base-uri 'none'",
     "form-action 'none'",
   ].join('; ');
 
-  const contentCsp = csp({ img: '', connect: "'none'" });
+  const contentCsp = csp({ img: '', connect: '' });
   const pageCsp = {
     'index.html': contentCsp,
     'locate.html': csp({ img: 'https://tile.openstreetmap.org', connect: apiUrl }),
