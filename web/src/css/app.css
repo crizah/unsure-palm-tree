@@ -13,7 +13,8 @@
   --tap: 44px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; }
+html, body { height: auto; min-height: 100%; }
+body.locate { height: 100%; overflow: hidden; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg); color: var(--text); line-height: 1.5;
@@ -24,7 +25,6 @@ button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 
 /* ---- /locate layout ---- */
-body.locate { overflow: hidden; }
 .app { position: fixed; inset: 0; display: flex; }
 #map { flex: 1; min-width: 0; background: #e8e8e8; }
 
@@ -339,9 +339,11 @@ body.home, body.about, body.blog {
   .stat-item:last-child { border-bottom: 0; }
 }
 @media (max-width: 600px) {
-  .site-nav { padding: 0 16px; height: 52px; }
+  .site-nav { padding: 0 12px; height: auto; flex-wrap: wrap; gap: 0; padding: 10px 12px; }
   .site-logo { font-size: 1rem; }
-  .site-nav ul a { padding: 6px 10px; font-size: 0.8rem; }
+  .site-nav ul { overflow-x: auto; scrollbar-width: none; gap: 0; }
+  .site-nav ul::-webkit-scrollbar { display: none; }
+  .site-nav ul a { padding: 6px 8px; font-size: 0.78rem; white-space: nowrap; }
   .wrap, .section, .section-alt .wrap { padding-left: 16px; padding-right: 16px; }
   .home-hero { padding: 36px 16px 32px; }
   .home-hero-text h1 { font-size: 2.1rem; }
